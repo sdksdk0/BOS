@@ -1,0 +1,4 @@
+[ 
+		{"id":"001","name":"0-10公斤","minweight":"0","maxweight":"10","updatetime":"1999-10-10 12:23:34","operator":{"username":"张三","station":"总公司"}},
+		{"id":"002","name":"10-20公斤","minweight":"0","maxweight":"10","updatetime":"1999-10-10 12:23:34","operator":{"username":"李四","station":"总公司"}}
+]

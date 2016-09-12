@@ -1,0 +1,7 @@
+[
+		{ "id":"1001", "pId":"100", "name":"用户管理", "t":"","page":"page_admin_userindex.action"},
+		{ "id":"1002", "pId":"100", "name":"功能权限管理", "t":"","page":"page_admin_function.action"},
+		{ "id":"1003", "pId":"100", "name":"角色管理", "t":"","page":"page_admin_role.action"},
+		{ "id":"1004", "pId":"100", "name":"流程定义管理", "t":"","page":"page_workflow_processdefinition_list.action"},
+		{ "id":"1005", "pId":"100", "name":"查看正在运行的任务", "t":"","page":"page_workflow_processinstance.action"}
+]
