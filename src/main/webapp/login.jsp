@@ -40,6 +40,15 @@ input[type=password] {
 	height: 34px;
 }
 </style>
+
+	<script type="text/javascript">
+			if(top!=self){
+				top.location = self.location;
+			}
+	
+	</script>
+
+
 </head>
 <body>
 	<div

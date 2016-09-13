@@ -7,6 +7,24 @@
 	<constant name="struts.ui.theme" value="simple"></constant>
 
 	<package name="basicstruts2" extends="struts-default">
+		
+		<!-- 注册拦截器 -->
+		<interceptors>
+				<interceptor name="login" class="cn.tf.bos.web.interceptor.LoginInterceptor"></interceptor>
+				<interceptor-stack name="loginStack">
+						<interceptor-ref name="defaultStack"></interceptor-ref>
+						<interceptor-ref name="login"></interceptor-ref>
+				</interceptor-stack>
+		</interceptors>
+		<!-- 设置默认拦截器栈 -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		
+		<global-results>
+			<result name="login">/login.jsp</result>
+		</global-results>
+		
+		
+		
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
@@ -15,13 +33,19 @@
 			<result>/WEB-INF/pages/{1}/{2}.jsp</result>
 		</action>
 		
-		<!-- 登录功能 -->
+	
+		
+		
+	</package>
+	
+	
+	<package name="nologin"  extends="struts-default">
+			<!-- 登录功能 -->
 		<action name="login" class="loginAction">
 			<result name="input">/login.jsp</result>
 			<result type="redirect">/index.jsp</result>
 		</action>
-		
-		
 	</package>
+	
 
 </struts>
