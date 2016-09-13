@@ -12,4 +12,7 @@
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<bean id="loginAction"  class="cn.tf.bos.web.action.user.LoginAction"  scope="prototype" />
+	<bean id="userAction"  class="cn.tf.bos.web.action.user.UserAction"   scope="prototype"></bean>
+
+
 </beans>

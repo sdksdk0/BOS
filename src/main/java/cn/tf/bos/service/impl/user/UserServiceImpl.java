@@ -14,4 +14,9 @@ public class UserServiceImpl extends BaseService implements UserService{
 		return list.isEmpty()?null:list.get(0);
 	}
 
+	public void editpwd(User user) {
+		User exist=userDao.findById(user.getId());
+		exist.setPassword(MD5Utils.md5(user.getPassword()));
+	}
+
 }

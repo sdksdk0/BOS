@@ -88,7 +88,31 @@
 		});
 		
 		$("#btnEp").click(function(){
-			alert("修改密码");
+			
+			//获得新密码和确认密码
+			var newPwd=$("#txtNewPass").val();
+			var rePwd=$("#txtRePass").val();
+			
+			if($.trim(newPwd)==""){
+				$.messager.alert('警告','密码不能为空','waring');
+				return ;
+			}
+			if($.trim(newPwd)!=$.trim(rePwd)){
+				$.messager.alert('警告','两次密码输入不一致','waring');
+				return ;
+			}
+			//校验成功
+			$.post("${pageContext.request.contextPath}/user_editpassword",{password:newPwd},function(data){
+				if(data.result=="success"){
+					$.messager.alert("信息",data.msg,"info");
+				}else{
+					$.messager.alert("信息",data.msg,"info");
+				}
+				$("#txtNewPass").val("");
+				$("#txtRePass").val("");
+				
+				$("#editPwdWindow").window('close');
+			});
 		});
 	});
 

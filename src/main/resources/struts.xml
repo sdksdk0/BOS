@@ -6,7 +6,7 @@
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.ui.theme" value="simple"></constant>
 
-	<package name="basicstruts2" extends="struts-default">
+	<package name="basicstruts2" extends="json-default">
 		
 		<!-- 注册拦截器 -->
 		<interceptors>
@@ -33,7 +33,11 @@
 			<result>/WEB-INF/pages/{1}/{2}.jsp</result>
 		</action>
 		
-	
+		<action name="user_*"  class="userAction" method="{1}">
+			<result name="editpassword"  type="json">
+					<param name="root">map</param>
+			</result>
+		</action>
 		
 		
 	</package>
