@@ -11,59 +11,10 @@
 				http://www.springframework.org/schema/tx 
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<!-- 整合hibernate -->
-	<context:property-placeholder  location="classpath:jdbc.properties"/>
-
-	<!-- 数据库连接池 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${driverClass}"></property>
-		<property name="jdbcUrl" value="${jdbcUrl}"></property>
-		<property name="user" value="${user}"></property>
-		<property name="password" value="${password}"></property>
-	</bean>
+	<import resource="classpath:applicationContext-common.xml"/>
+	<import resource="classpath:applicationContext-dao.xml"/>
+	<import resource="classpath:applicationContext-service.xml"/>
+	<import resource="classpath:applicationContext-action.xml"/>
 	
-	<!-- 配置SessionFactory  -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<!-- 配置hibernate 属性 ，参考 hibernate.properties 文件 -->
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-			</props>
-		</property>
-		<!-- 映射hbm -->
-		<property name="mappingDirectoryLocations" value="classpath:cn/tf/bos/domain"></property>
-	</bean>
 	
-	<!-- 配置事务  -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	
-	<!-- 事务管理 通知 -->
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-		<!-- 对哪些方法采用 ，设置哪些事务管理属性  -->
-		<tx:attributes>
-			<!-- 查询相关方法 -->
-			<tx:method name="get*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-			<tx:method name="find*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-			<tx:method name="list*" propagation="REQUIRED" isolation="DEFAULT" read-only="true"/>
-			
-			<!-- 增删改方法 -->
-			<tx:method name="save*" propagation="REQUIRED" isolation="DEFAULT"/>
-			<tx:method name="add*" propagation="REQUIRED" isolation="DEFAULT"/>
-			<tx:method name="delete*" propagation="REQUIRED" isolation="DEFAULT"/>
-			<tx:method name="update*" propagation="REQUIRED" isolation="DEFAULT"/>
-			<tx:method name="*" propagation="REQUIRED" isolation="DEFAULT"/>
-		</tx:attributes>
-	</tx:advice>
-	
-	<!-- aop切面 -->
-	<aop:config>
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* cn.tf.bos.service.impl..*(..))"/>
-	</aop:config>
-
 </beans>

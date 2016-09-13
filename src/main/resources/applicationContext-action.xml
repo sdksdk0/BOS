@@ -11,10 +11,5 @@
 				http://www.springframework.org/schema/tx 
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<import resource="classpath:applicationContext-common.xml"/>
-	<import resource="classpath:applicationContext-dao.xml"/>
-	<import resource="classpath:applicationContext-service.xml"/>
-	<import resource="classpath:applicationContext-action.xml"/>
-	
-	
+	<bean id="loginAction"  class="cn.tf.bos.web.action.user.LoginAction"  scope="prototype" />
 </beans>

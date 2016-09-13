@@ -1,4 +1,4 @@
-package cn.tf.bos.domain;
+package cn.tf.bos.domain.user;
 
 import java.util.Date;
 
@@ -26,14 +26,9 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	/** minimal constructor */
-	public User(String id) {
-		this.id = id;
-	}
-
 	/** full constructor */
-	public User(String id, String username, String password, Double salary, Date birthday, String gender, String station, String telephone, String remark) {
-		this.id = id;
+	public User(String username, String password, Double salary, Date birthday,
+			String gender, String station, String telephone, String remark) {
 		this.username = username;
 		this.password = password;
 		this.salary = salary;

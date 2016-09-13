@@ -11,10 +11,11 @@
 				http://www.springframework.org/schema/tx 
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<import resource="classpath:applicationContext-common.xml"/>
-	<import resource="classpath:applicationContext-dao.xml"/>
-	<import resource="classpath:applicationContext-service.xml"/>
-	<import resource="classpath:applicationContext-action.xml"/>
+	<!-- 配置dao -->
+	<bean id="userDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.user.User"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 	
 </beans>

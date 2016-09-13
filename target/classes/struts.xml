@@ -4,7 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<constant name="struts.devMode" value="true" />
-	<constant name="struts.objectFactory" value="spring"></constant>
+	<constant name="struts.ui.theme" value="simple"></constant>
 
 	<package name="basicstruts2" extends="struts-default">
 		<action name="index">
@@ -14,6 +14,14 @@
 		<action name="page_*_*">
 			<result>/WEB-INF/pages/{1}/{2}.jsp</result>
 		</action>
+		
+		<!-- 登录功能 -->
+		<action name="login" class="loginAction">
+			<result name="input">/login.jsp</result>
+			<result type="redirect">/index.jsp</result>
+		</action>
+		
+		
 	</package>
 
 </struts>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,18 +55,18 @@ input[type=password] {
 				<div id="lbNormal" class="loginFuncMobile">员工登录</div>
 			</div>
 			<div class="loginForm">
-				<form id="loginform" name="loginform" method="post" class="niceform"
-					action="">
+				<s:form  namespace="/"  action="login"  id="loginform" name="loginform"  cssClass="noceform"  >
+				<s:actionerror/>
 					<div id="idInputLine" class="loginFormIpt showPlaceholder"
 						style="margin-top: 5px;">
-						<input id="loginform:idInput" type="text" name="loginform:idInput"
-							class="loginFormTdIpt" maxlength="50" tabindex="1" title="请输入帐号" />
+						<s:textfield id="loginform:idInput" name="username"
+							cssClass="loginFormTdIpt" maxlength="50" tabindex="1" title="请输入帐号"/>	
 						<label for="idInput" class="placeholder" id="idPlaceholder">帐号：</label>
 					</div>
 					<div class="forgetPwdLine"></div>
 					<div id="pwdInputLine" class="loginFormIpt showPlaceholder">
-						<input id="loginform:pwdInput" class="loginFormTdIpt" type="password"
-							name="loginform:pwdInput" value="" tabindex="2" title="请输入密码" />
+						<s:password id="loginform:pwdInput" cssClass="loginFormTdIpt" type="password"
+							name="password" value="" tabindex="2" title="请输入密码"/>	
 						<label for="pwdInput" class="placeholder" id="pwdPlaceholder">密码：</label>
 					</div>
 					<div class="loginFormIpt loginFormIptWiotTh"
@@ -73,26 +74,24 @@ input[type=password] {
 						<div id="codeInputLine" class="loginFormIpt showPlaceholder"
 							style="margin-left:0px;margin-top:-40px;width:50px;">
 							<input id="loginform:codeInput" class="loginFormTdIpt" type="text"
-								name="loginform:codeInput" title="请输入验证码" />
+								name="checkcode" title="请输入验证码" />
 							<img id="loginform:vCode" src="${pageContext.request.contextPath }/validatecode.jsp"
 								onclick="javascript:document.getElementById('loginform:vCode').src='${pageContext.request.contextPath }/validatecode.jsp?'+Math.random();" />
 						</div>
-						<a href="${pageContext.request.contextPath}/page_common_index.action" id="loginform:j_id19" name="loginform:j_id19">
+						<a href="javascript:$('#loginform').submit();" id="loginform:j_id19" name="loginform:j_id19">
 						<span
 							id="loginform:loginBtn" class="btn btn-login"
 							style="margin-top:-36px;">登录</span>
 						</a>
 					</div>
-				</form>
+				</s:form>
 			</div>
 		</div>
 	</div>
 	<div
 		style="width: 900px; height: 50px; position: absolute; text-align: left; left: 50%; top: 50%; margin-left: -450px;; margin-top: 220px;">
-		<span style="color: #488ED5;">Powered By www.itcast.cn</span><span
-			style="color: #488ED5;margin-left:10px;">推荐浏览器（右键链接-目标另存为）：<a
-			href="http://download.firefox.com.cn/releases/full/23.0/zh-CN/Firefox-full-latest.exe">Firefox</a>
-		</span><span style="float: right; color: #488ED5;">宅急送BOS系统</span>
+		<span style="color: #488ED5;">Powered By www.tianfang1314.cn</span>
+		<span style="float: right; color: #488ED5;">宅急送BOS系统</span>
 	</div>
 </body>
 </html>
