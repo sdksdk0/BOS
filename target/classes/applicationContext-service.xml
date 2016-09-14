@@ -14,5 +14,6 @@
 	<bean id="userService"  class="cn.tf.bos.service.impl.user.UserServiceImpl"></bean>
 	<bean id="standardService"  class="cn.tf.bos.service.impl.bc.StandardServiceImpl"></bean>
 	<bean id="staffService"  class="cn.tf.bos.service.impl.bc.StaffServiceImpl"></bean>
+	<bean id="regionService"  class="cn.tf.bos.service.impl.bc.RegionServiceImpl"></bean>
 	
 </beans>

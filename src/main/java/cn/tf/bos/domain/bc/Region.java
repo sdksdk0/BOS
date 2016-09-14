@@ -3,6 +3,8 @@ package cn.tf.bos.domain.bc;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 
 /**
  * Region entity. @author MyEclipse Persistence Tools
@@ -105,6 +107,7 @@ public class Region  implements java.io.Serializable {
         this.citycode = citycode;
     }
 
+    @JSON(serialize=false)
     public Set getSubareas() {
         return this.subareas;
     }

@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Decidedzone entity. @author MyEclipse Persistence Tools
  */
-
+//区域信息
 public class Decidedzone  implements java.io.Serializable {
 
 
@@ -72,13 +72,6 @@ public class Decidedzone  implements java.io.Serializable {
     public void setSubareas(Set subareas) {
         this.subareas = subareas;
     }
-   
-
-
-
-
-
-
 
 
 }

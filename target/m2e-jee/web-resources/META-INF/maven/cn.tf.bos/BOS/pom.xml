@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>cn.tf.bos</groupId>
-  <artifactId>BOS</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  <name>BOS</name>
-  <dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>cn.tf.bos</groupId>
+	<artifactId>BOS</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>BOS</name>
+	<dependencies>
 		<!-- spring 3.2 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -65,7 +66,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
-			<scope>provided</scope> <!-- 只在编译和测试环境下使用，不参与打包运行，默认值Runtime-->
+			<scope>provided</scope> <!-- 只在编译和测试环境下使用，不参与打包运行，默认值Runtime -->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -103,22 +104,30 @@
 			<version>4.9</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+
 	</dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
-        </configuration>
-      </plugin>
-	  <!-- 使用 plugin 配置tomcat-maven-plugin -->
-		  <plugin>
-	  	<groupId>org.apache.tomcat.maven</groupId>
-	  	<artifactId>tomcat7-maven-plugin</artifactId>
-	  	<version>2.2</version>
-	  </plugin>
-	</plugins>
-  </build>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<!-- 使用 plugin 配置tomcat-maven-plugin -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -26,6 +26,8 @@
 <script
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
+<!-- 导入一键上传 js -->
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addRegionWindow').window("open");
@@ -55,6 +57,10 @@
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
+	},{
+		id : 'button-import',
+		text : '批量导入',
+		iconCls : 'icon-save'
 	}];
 	// 定义列
 	var columns = [ [ {
@@ -106,7 +112,7 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/region.json",
+			url : "${pageContext.request.contextPath}/region_findByPage",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -122,6 +128,18 @@
 	        height: 400,
 	        resizable:false
 	    });
+		
+		// 对批量导入添加一键上传效果 
+		$('#button-import').upload({
+			name : 'upload' , // <input type="file" name="upload" 
+			action : '${pageContext.request.contextPath}/region_OCimport', // 表单提交路径
+			onComplete : function(response){
+				var data = eval("("+response+")");
+				$.messager.alert('信息',data.msg,'info');
+				// 使datagrid 数据刷新
+				$('#grid').datagrid('reload');
+			}
+		});
 		
 	});
 

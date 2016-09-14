@@ -23,8 +23,14 @@
 	</bean>
 	
 	
-	<bean id="staffdDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+	<bean id="staffDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
 		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.bc.Staff"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<bean id="regionDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.bc.Region"></constructor-arg>
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
