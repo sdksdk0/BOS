@@ -49,7 +49,7 @@
 	// 作废操作 
 	function doDelete(){
 		// 先判断 用户是否选择
-		
+		$("#mark").val("1");
 		var array = $('#grid').datagrid('getSelections'); 
 		if(array.length == 0){
 			$.messager.alert('警告','请先选择数据！','warning');
@@ -60,7 +60,7 @@
 	//还原
 	function doRestore(){
 		// 先判断 用户是否选择
-		
+		$("#mark").val("0");
 		var array = $('#grid').datagrid('getSelections'); 
 		if(array.length == 0){
 			$.messager.alert('警告','请先选择数据！','warning');
@@ -230,7 +230,7 @@
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
 	<form id="delForm" action="${pageContext.request.contextPath }/staff_deleteOrRestom" method="post">
-		<input  type="hidden"  id="mark"  > 
+		<input  type="hidden"  id="mark" name="mark" > 
 		<div region="center" border="false">
 	    	<table id="grid"></table>
 		</div>
@@ -243,7 +243,7 @@
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form id="staffForm" action="${pageContext.request.contextPath }/staff_saveOrUpdate.action" method="post">
+			<form id="staffForm" action="${pageContext.request.contextPath }/staff_saveOrUpdate" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">收派员信息</td>

@@ -4,6 +4,9 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
@@ -27,10 +30,13 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 	}
 	
 	public String saveOrUpdate(){
+	
 		staffService.saveOrUpdate(staff);
 		return "saveOrUpdate";
 	}
 	
+	
+
 	//分页查询
 	public String findByPage(){
 		DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Staff.class);
@@ -45,16 +51,21 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 		return "findByPage";
 	}
 	
+	//作废或还原
 	public String deleteOrRestom(){
 		
-
-		String value="1";
+		String value=ServletActionContext.getRequest().getParameter("mark");
+		System.out.println(value);
+		String value1;
+		if(value.equals("1")){
+				value1="1";	
+		}else{
+				value1="0";
+		}
 		String[] ids=staff.getId().split(", ");
-
-		staffService.delete(ids,value);
+		System.out.println(value1);
+		staffService.delete(ids,value1);
 		return "delete";
 	}
-	
-	
 
 }

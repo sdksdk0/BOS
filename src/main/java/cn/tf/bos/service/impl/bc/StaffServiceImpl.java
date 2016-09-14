@@ -2,6 +2,7 @@ package cn.tf.bos.service.impl.bc;
 
 
 import java.util.List;
+import java.util.Random;
 
 import cn.tf.bos.domain.bc.Staff;
 import cn.tf.bos.domain.bc.Standard;
@@ -12,8 +13,13 @@ import cn.tf.bos.service.bc.StaffService;
 
 
 public class StaffServiceImpl extends BaseService  implements StaffService{
-
+	
 	public void saveOrUpdate(Staff staff) {
+		
+		if(staff.getId()==null){
+			//为其添加主键
+			staff.setId("s"+(int)((Math.random()*9+1)*100000000));
+		}
 		staffDao.saveOrUpdate(staff);
 		
 	}
@@ -39,12 +45,6 @@ public class StaffServiceImpl extends BaseService  implements StaffService{
 				Staff staff=staffDao.findById(id);
 				staff.setDeltag("0");
 			}
-			
-		}
-		
-	
-		
+		}	
 	}
-
-
 }
