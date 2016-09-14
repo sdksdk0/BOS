@@ -16,8 +16,8 @@ public class LoginInterceptor extends AbstractInterceptor{
 		if(user==null){
 			
 			//没有登录时设置错误提示信息
-			ActionSupport  action=(ActionSupport) invocation.getAction();
-			action.addActionError("登录信息已超时，请重新登录");
+	/*		ActionSupport  action=(ActionSupport) invocation.getAction();
+			action.addActionError("登录信息已超时，请重新登录");*/
 			return "login";
 		}else{
 			return invocation.invoke();			

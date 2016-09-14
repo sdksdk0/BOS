@@ -8,7 +8,7 @@
     <class name="cn.tf.bos.domain.user.User" table="user" catalog="bos">
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="uuid" />
+            <generator class="assigned" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" />
@@ -16,30 +16,35 @@
         <property name="password" type="java.lang.String">
             <column name="password" length="32" />
         </property>
-        <property name="salary" type="java.lang.Double">
-            <column name="salary" precision="22" scale="0" />
+        <property name="gender" type="java.lang.String">
+            <column name="gender" length="1" />
         </property>
         <property name="birthday" type="java.util.Date">
             <column name="birthday" length="10" />
         </property>
-        <property name="gender" type="java.lang.String">
-            <column name="gender" length="10" />
+        <property name="salary" type="java.lang.Double">
+            <column name="salary" precision="22" scale="0" />
         </property>
         <property name="station" type="java.lang.String">
             <column name="station" length="40" />
         </property>
         <property name="telephone" type="java.lang.String">
-            <column name="telephone" length="11" />
+            <column name="telephone" length="40" />
         </property>
         <property name="remark" type="java.lang.String">
             <column name="remark" />
         </property>
+        <set name="standards" inverse="true">
+            <key>
+                <column name="user_id" length="32" />
+            </key>
+            <one-to-many class="cn.tf.bos.domain.bc.Standard" />
+        </set>
     </class>
-    <!-- 命名查询 -->
+    
+     <!-- 命名查询 -->
     <query name="User.login">
     	<![CDATA[from User where username=?  and password=? ]]>
     </query>
-    
-    
     
 </hibernate-mapping>

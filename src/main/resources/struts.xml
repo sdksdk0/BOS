@@ -40,6 +40,27 @@
 		</action>
 		
 		
+		<action   name="standard_*"  class="standardAction"  method="{1}"  >
+				<result name="save">/WEB-INF/pages/base/standard.jsp</result>
+				<result name="findByPage"   type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total, <!-- pageResponseBean的 total 属性返回  -->
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.minweight,
+					rows\[\d+\]\.maxweight,
+					rows\[\d+\]\.updatetime,
+					rows\[\d+\]\.user\.username,
+					rows\[\d+\]\.user\.station
+				</param>
+				</result>
+				<result name="delete">/WEB-INF/pages/base/standard.jsp</result>
+		</action>
+		
+		
+		
 	</package>
 	
 	

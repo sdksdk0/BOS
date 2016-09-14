@@ -12,5 +12,6 @@
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<bean id="userService"  class="cn.tf.bos.service.impl.user.UserServiceImpl"></bean>
-
+	<bean id="standardService"  class="cn.tf.bos.service.impl.bc.StandardServiceImpl"></bean>
+	
 </beans>

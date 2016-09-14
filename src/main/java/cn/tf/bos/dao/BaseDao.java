@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 
+import cn.tf.bos.domain.bc.Standard;
+
 //通用Dao
 public interface  BaseDao<T> {
 	//保存
@@ -24,5 +26,14 @@ public interface  BaseDao<T> {
 	public  List<T>  findByNameQuery(String queryName,Object...  values);
 	
 	public List<T>  findByCriteria(DetachedCriteria detachedCriteria);
+	
+	//记录总数
+	public long findTotal(DetachedCriteria detachedCriteria);
+	
+	//分页查询
+	public List<T> findByPage(DetachedCriteria detachedCriteria,
+			int firstResult, int maxResult);
+	
+	public void saveOrUpdate(T t);
 	
 }

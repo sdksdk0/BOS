@@ -17,5 +17,10 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="standardDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.bc.Standard"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	
 </beans>
