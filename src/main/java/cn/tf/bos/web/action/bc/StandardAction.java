@@ -1,15 +1,16 @@
 package cn.tf.bos.web.action.bc;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
-import cn.tf.bos.domain.PageRequestBean;
-import cn.tf.bos.domain.PageResponseBean;
 import cn.tf.bos.domain.bc.Standard;
 import cn.tf.bos.domain.user.User;
+import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.web.action.BaseAction;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -58,6 +59,17 @@ public class StandardAction extends BaseAction  implements ModelDriven<Standard>
 		standardService.delete(ids);
 		return "delete";
 	}
+	
+	//查询取派标准列表
+	public String ajaxlist(){
+		//查询列表
+		List<Standard>  standardlist=standardService.ajaxlist();
+		
+		ActionContext.getContext().put("standardlist",standardlist);
+		
+		return "ajaxlist";
+	}
+	
 	
 	
 	

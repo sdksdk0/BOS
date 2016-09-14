@@ -2,9 +2,9 @@ package cn.tf.bos.service.impl.bc;
 
 import java.util.List;
 
-import cn.tf.bos.domain.PageRequestBean;
-import cn.tf.bos.domain.PageResponseBean;
 import cn.tf.bos.domain.bc.Standard;
+import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.service.BaseService;
 import cn.tf.bos.service.bc.StandardService;
 
@@ -39,6 +39,10 @@ public class StandardServiceImpl extends BaseService  implements StandardService
 			standard.setDeltag("1");
 		}
 		
+	}
+
+	public List<Standard> ajaxlist() {
+		return standardDao.findByNameQuery("Standard.ajaxlist");
 	}
 
 	

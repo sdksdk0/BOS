@@ -57,6 +57,36 @@
 				</param>
 				</result>
 				<result name="delete">/WEB-INF/pages/base/standard.jsp</result>
+				
+				<result  name="ajaxlist"  type="json">
+					<param name="root">standardlist</param>
+					<param name="includeProperties">
+						\[\d+\]\.id,
+						\[\d+\]\.name
+					</param>
+				</result>
+		</action>
+		
+		<!-- 取派员配置 -->
+		<action  name="staff_*"  class="staffAction"  method="{1}">
+				<result name="saveOrUpdate">/WEB-INF/pages/base/staff.jsp</result>
+				<result  name="findByPage"  type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.telephone,
+					rows\[\d+\]\.station,
+					rows\[\d+\]\.haspda,
+					rows\[\d+\]\.deltag,
+					rows\[\d+\]\.standard\.id,
+					rows\[\d+\]\.standard\.name
+				</param>
+				</result>
+				<result name="delete">/WEB-INF/pages/base/staff.jsp</result>
+				
 		</action>
 		
 		

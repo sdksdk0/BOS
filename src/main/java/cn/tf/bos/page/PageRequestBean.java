@@ -1,4 +1,4 @@
-package cn.tf.bos.domain;
+package cn.tf.bos.page;
 
 import org.hibernate.criterion.DetachedCriteria;
 

@@ -3,6 +3,8 @@ package cn.tf.bos.domain.bc;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.struts2.json.annotations.JSON;
+
 
 /**
  * Staff entity. @author MyEclipse Persistence Tools
@@ -18,7 +20,7 @@ public class Staff  implements java.io.Serializable {
      private String name;
      private String telephone;
      private String haspda;
-     private String deltag;
+     private String deltag = "0";
      private String station;
      private Set decidedzones = new HashSet(0);
 
@@ -104,7 +106,7 @@ public class Staff  implements java.io.Serializable {
     public void setStation(String station) {
         this.station = station;
     }
-
+    @JSON(serialize = false)
     public Set getDecidedzones() {
         return this.decidedzones;
     }

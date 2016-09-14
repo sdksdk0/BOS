@@ -35,4 +35,10 @@
             <one-to-many class="cn.tf.bos.domain.bc.Staff" />
         </set>
     </class>
+    
+    <query name="Standard.ajaxlist">
+    	<![CDATA[from Standard where deltag='0' ]]>
+    </query>
+    
+    
 </hibernate-mapping>

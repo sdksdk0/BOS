@@ -14,6 +14,7 @@
 	<bean id="loginAction"  class="cn.tf.bos.web.action.user.LoginAction"  scope="prototype" />
 	<bean id="userAction"  class="cn.tf.bos.web.action.user.UserAction"   scope="prototype"></bean>
 	<bean id="standardAction"  class="cn.tf.bos.web.action.bc.StandardAction"   scope="prototype"></bean>
+	<bean id="staffAction"  class="cn.tf.bos.web.action.bc.StaffAction"   scope="prototype"></bean>
 	
 
 </beans>
