@@ -27,7 +27,7 @@
 	src="${pageContext.request.contextPath }/js/easyui/locale/easyui-lang-zh_CN.js"
 	type="text/javascript"></script>
 <!-- 导入一键上传 js -->
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery.ocupload-1.1.2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/ocupload/jquery.ocupload-1.1.2.js"></script>
 <script type="text/javascript">
 	function doAdd(){
 		$('#addRegionWindow').window("open");
@@ -131,7 +131,7 @@
 		
 		// 对批量导入添加一键上传效果 
 		$('#button-import').upload({
-			name : 'upload' , // <input type="file" name="upload" 
+			name : 'upload', 
 			action : '${pageContext.request.contextPath}/region_OCimport', // 表单提交路径
 			onComplete : function(response){
 				var data = eval("("+response+")");

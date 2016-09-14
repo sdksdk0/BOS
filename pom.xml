@@ -111,6 +111,13 @@
 			<version>3.9</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<build>

@@ -25,7 +25,7 @@ public abstract class BaseAction  extends ActionSupport  {
 	protected StaffService staffService;
 	
 	
-	@Resource(name="regionService")
+	@Resource(name = "regionService")
 	protected RegionService regionService;
 	
 	

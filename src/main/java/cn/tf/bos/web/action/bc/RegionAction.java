@@ -9,27 +9,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
-
-import cn.tf.bos.domain.bc.Region;
-import cn.tf.bos.domain.bc.Staff;
-import cn.tf.bos.domain.bc.Standard;
-import cn.tf.bos.domain.user.User;
-import cn.tf.bos.page.PageRequestBean;
-import cn.tf.bos.page.PageResponseBean;
-import cn.tf.bos.web.action.BaseAction;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
+
+import cn.tf.bos.domain.bc.Region;
+import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.page.PageResponseBean;
+import cn.tf.bos.utils.PinYin4jUtils;
+import cn.tf.bos.web.action.BaseAction;
+
 
 
 //标准管理
@@ -55,19 +50,22 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 	
 	
 	//接收上传的数据
-	public String OCimport() throws FileNotFoundException, IOException{
+	public String OCimport() throws IOException{
+		
+		System.out.println("bb");
 		// 1、 工作薄对象
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(new FileInputStream(upload));
 		// 解析工作薄
 		hssfWorkbook.setMissingCellPolicy(Row.CREATE_NULL_AS_BLANK); // 避免空指针异常
-
+			
 		// 2、 获得Sheet
 		HSSFSheet sheet = hssfWorkbook.getSheetAt(0); // 获得第一个sheet
 
+		System.out.println("aa");
 		// 3、遍历每一行
 		for (Row row : sheet) {
-			// 进行解析 ， 每一行数据，对应 Region 区域信息
-			if (row.getRowNum() == 0) {// 第一行（表头，无需解析）
+	
+			if (row.getRowNum() == 0) {
 				continue;
 			}
 			// 从第二行 开始解析
@@ -82,8 +80,19 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 			region.setCity(row.getCell(2).getStringCellValue());
 			region.setDistrict(row.getCell(3).getStringCellValue());
 			region.setPostcode(row.getCell(4).getStringCellValue());
-			region.setShortcode(row.getCell(5).getStringCellValue());
-			region.setCitycode(row.getCell(6).getStringCellValue());
+			
+			//使用pinyin4j生成编码和简码
+			String str=region.getProvince()+region.getCity()+region.getDistrict();
+			str=str.replaceAll("省", "").replaceAll("市", "").replaceAll("区", "").replaceAll("县", "");
+			String[]  arr=PinYin4jUtils.getHeadByString(str);
+			StringBuffer sb = new StringBuffer();
+			for (String headChar : arr) {
+				sb.append(headChar);
+			}
+			region.setShortcode(sb.toString()); // 简码
+
+			// 生成城市编码
+			region.setCitycode(PinYin4jUtils.hanziToPinyin(region.getCity(), ""));
 			
 			//保存数据时出错
 			try {

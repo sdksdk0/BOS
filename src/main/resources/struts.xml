@@ -5,8 +5,7 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.ui.theme" value="simple"></constant>
-	<constant name="struts.multipart.saveDir" value="/tmp"></constant>
-	
+
 	<package name="basicstruts2" extends="json-default">
 		
 		<!-- 注册拦截器 -->
@@ -89,13 +88,13 @@
 				<result name="delete">/WEB-INF/pages/base/staff.jsp</result>	
 		</action>
 		
+		<!-- 区域设置 -->
 		<action name="region_*"  class="regionAction"  method="{1}">
 			<result  name="OCimport" type="json">
 				<param name="root">map</param>
 			</result>
 			<result name="findByPage"  type="json">
 				<param name="root">pageResponseBean</param>
-
 			</result>
 		</action>
 		

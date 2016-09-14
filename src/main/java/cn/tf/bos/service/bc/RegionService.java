@@ -7,7 +7,7 @@ import cn.tf.bos.page.PageResponseBean;
 
 public interface RegionService extends PageQuery{
 
-	void saveRegion(Region region);
+	public void saveRegion(Region region);
 
 
 }
