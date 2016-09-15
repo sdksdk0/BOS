@@ -96,11 +96,42 @@
 			<result name="findByPage"  type="json">
 				<param name="root">pageResponseBean</param>
 			</result>
+			<result name="ajaxlist" type="json">
+				<param name="root">regions</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.info
+				</param>
+			</result>
 		</action>
 		
-		
+			<!-- 分区设置 -->
+	<action  name="subarea_*"  class="subareaAction"  method="{1}">
+		<result name="saveOrUpdate">/WEB-INF/pages/base/subarea.jsp</result>
+		<result  name="findByPage"  type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.addresskey,
+					rows\[\d+\]\.startnum,
+					rows\[\d+\]\.endnum,
+					rows\[\d+\]\.single,
+					rows\[\d+\]\.position,
+					rows\[\d+\]\.region\.province,
+					rows\[\d+\]\.region\.city,
+					rows\[\d+\]\.region\.district
+				</param>
+				</result>
+	
+	</action>
+	
+	
+	
 	</package>
 	
+
 	
 	<package name="nologin"  extends="struts-default">
 			<!-- 登录功能 -->

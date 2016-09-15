@@ -7,30 +7,31 @@ import java.util.Random;
 import cn.tf.bos.domain.bc.Region;
 import cn.tf.bos.domain.bc.Staff;
 import cn.tf.bos.domain.bc.Standard;
+import cn.tf.bos.domain.bc.Subarea;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.service.BaseService;
 import cn.tf.bos.service.bc.RegionService;
 import cn.tf.bos.service.bc.StaffService;
+import cn.tf.bos.service.bc.SubareaService;
 
 
-public class RegionServiceImpl extends BaseService  implements RegionService{
+public class SubareaServiceImpl extends BaseService  implements SubareaService{
 
-	public void saveRegion(Region region) {
-		regionDao.save(region);
+	@Override
+	public void saveOrUpdate(Subarea subarea) {
+		
+		subareaDao.saveOrUpdate(subarea);
 		
 	}
 
 	@Override
 	public PageResponseBean findByPage(PageRequestBean pageRequestBean) {
 		
-		return pageQuery(pageRequestBean, regionDao);
+		return pageQuery(pageRequestBean, subareaDao);
 	}
 
-	@Override
-	public List<Region> findAllRegions() {
-		return regionDao.findAll();
-	}
+
 
 
 	

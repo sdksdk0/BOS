@@ -62,8 +62,7 @@ public class BaseDaoImpl<T>  extends HibernateDaoSupport  implements BaseDao<T>{
 	public long findTotal(DetachedCriteria detachedCriteria) {
 		//投影
 		detachedCriteria.setProjection(Projections.rowCount());
-		List<Long> list=this.getHibernateTemplate().findByCriteria(detachedCriteria);
-		
+		List<Long> list = this.getHibernateTemplate().findByCriteria(detachedCriteria, 0, 1);
 		return list.get(0);
 	}
 

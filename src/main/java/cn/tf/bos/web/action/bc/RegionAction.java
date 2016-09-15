@@ -36,6 +36,17 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 	public Region getModel() {
 		return region;
 	}
+	
+	//返回下拉
+	public String ajaxlist(){
+		List<Region>  regions=regionService.findAllRegions();
+		ActionContext.getContext().put("regions", regions);
+
+		return "ajaxlist";
+	}
+	
+	
+	
 
 	//分页查询
 	public String findByPage(){

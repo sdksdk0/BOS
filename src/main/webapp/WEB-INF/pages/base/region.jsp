@@ -69,27 +69,27 @@
 	},{
 		field : 'province',
 		title : '省',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'city',
 		title : '市',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'district',
 		title : '区',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'postcode',
 		title : '邮编',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'shortcode',
 		title : '简码',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'citycode',
@@ -109,7 +109,7 @@
 			border : false,
 			rownumbers : true,
 			striped : true,
-			pageList: [30,50,100],
+			pageList: [2,5,10],
 			pagination : true,
 			toolbar : toolbar,
 			url : "${pageContext.request.contextPath}/region_findByPage",
@@ -136,7 +136,6 @@
 			onComplete : function(response){
 				var data = eval("("+response+")");
 				$.messager.alert('信息',data.msg,'info');
-				// 使datagrid 数据刷新
 				$('#grid').datagrid('reload');
 			}
 		});

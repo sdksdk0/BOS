@@ -16,6 +16,7 @@
 	<bean id="standardAction"  class="cn.tf.bos.web.action.bc.StandardAction"   scope="prototype"></bean>
 	<bean id="staffAction"  class="cn.tf.bos.web.action.bc.StaffAction"   scope="prototype"></bean>
 	<bean id="regionAction"  class="cn.tf.bos.web.action.bc.RegionAction"   scope="prototype"></bean>
+	<bean id="subareaAction"  class="cn.tf.bos.web.action.bc.SubareaAction"   scope="prototype"></bean>
 	
 
 </beans>

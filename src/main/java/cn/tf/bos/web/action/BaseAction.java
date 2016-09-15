@@ -8,6 +8,7 @@ import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.service.bc.RegionService;
 import cn.tf.bos.service.bc.StaffService;
 import cn.tf.bos.service.bc.StandardService;
+import cn.tf.bos.service.bc.SubareaService;
 import cn.tf.bos.service.user.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,6 +29,9 @@ public abstract class BaseAction  extends ActionSupport  {
 	@Resource(name = "regionService")
 	protected RegionService regionService;
 	
+	
+	@Resource(name = "subareaService")
+	protected SubareaService subareaService;
 	
 	private int page;
 	private int rows;
