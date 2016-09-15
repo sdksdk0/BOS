@@ -64,7 +64,7 @@
 	}
 	
 	function doExport(){
-		alert("导出");
+		location.href="${pageContext.request.contextPath}/subarea_exportFile";
 	}
 	
 	function doImport(){

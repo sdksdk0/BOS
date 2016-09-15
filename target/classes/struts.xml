@@ -124,6 +124,10 @@
 					rows\[\d+\]\.region\.district
 				</param>
 				</result>
+				<result name="exportFile"  type="stream">
+					<param name="contentType">application/vnd.ms-excel</param>
+					<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+				</result>
 	
 	</action>
 	
