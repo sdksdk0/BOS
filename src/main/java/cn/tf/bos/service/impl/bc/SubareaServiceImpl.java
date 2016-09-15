@@ -31,8 +31,14 @@ public class SubareaServiceImpl extends BaseService  implements SubareaService{
 		return pageQuery(pageRequestBean, subareaDao);
 	}
 
-
-
+	@Override
+	public void delete(String[] ids) {
+		for(String id:ids){
+			Subarea subarea=subareaDao.findById(id);
+			subareaDao.delete(subarea);
+		}
+		
+	}
 
 	
 }

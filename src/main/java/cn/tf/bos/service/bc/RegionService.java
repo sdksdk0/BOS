@@ -13,5 +13,9 @@ public interface RegionService extends PageQuery{
 
 	public List<Region> findAllRegions();
 
+	public void saveOrUpdate(Region region);
+
+	public void delete(String[] ids);
+
 
 }

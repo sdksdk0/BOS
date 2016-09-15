@@ -32,6 +32,22 @@ public class RegionServiceImpl extends BaseService  implements RegionService{
 		return regionDao.findAll();
 	}
 
+	@Override
+	public void saveOrUpdate(Region region) {
+		
+		regionDao.saveOrUpdate(region);
+	}
+
+	@Override
+	public void delete(String[] ids) {
+		
+		for(String id:ids){
+			Region region=regionDao.findById(id);
+			regionDao.delete(region);
+		}
+		
+	}
+
 
 	
 }

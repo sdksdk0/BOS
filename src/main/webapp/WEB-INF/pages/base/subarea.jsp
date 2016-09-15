@@ -51,12 +51,15 @@
 		$('#addSubareaWindow').window("open");
 	}
 	
-	function doEdit(){
-		alert("修改...");
-	}
+
 	
 	function doDelete(){
-		alert("删除...");
+		var array = $('#grid').datagrid('getSelections'); 
+		if(array.length == 0){
+			$.messager.alert('警告','请先选择数据！','warning');
+		}else{
+			$('#delForm').submit();
+		}
 	}
 	
 	function doSearch(){
@@ -67,9 +70,6 @@
 		location.href="${pageContext.request.contextPath}/subarea_exportFile";
 	}
 	
-	function doImport(){
-		alert("导入");
-	}
 	
 	//工具栏
 	var toolbar = [ {
@@ -82,21 +82,11 @@
 		text : '增加',
 		iconCls : 'icon-add',
 		handler : doAdd
-	}, {
-		id : 'button-edit',	
-		text : '修改',
-		iconCls : 'icon-edit',
-		handler : doEdit
 	},{
 		id : 'button-delete',
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
-	},{
-		id : 'button-import',
-		text : '导入',
-		iconCls : 'icon-redo',
-		handler : doImport
 	},{
 		id : 'button-export',
 		text : '导出',
@@ -241,15 +231,29 @@
 		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	function doDblClickRow(rowIndex, rowData){
+		// form回显
+		$('#id').val(rowData.id);
+		$('#id').attr('readonly','readonly');
+		$('#addresskey').val(rowData.addresskey);
+		$('#startnum').val(rowData.startnum);
+		$('#endnum').val(rowData.endnum);
+		$('#single').val(rowData.single);
+		$('#position').val(rowData.position);
+		
+		$('#regionId').combobox('setValue', rowData.region.province+"-"+ rowData.region.city+"-"+ rowData.region.district);  
+		
+		// 弹出窗口
+		$('#addSubareaWindow').window('open');
 	}
 </script>	
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
-	<div region="center" border="false">
-    	<table id="grid"></table>
-	</div>
+	<form id="delForm" action="${pageContext.request.contextPath }/subarea_delete" method="post">
+		<div region="center" border="false">
+	    	<table id="grid"></table>
+		</div>
+	</form>
 	<!-- 添加 修改分区 -->
 	<div class="easyui-window" title="分区添加修改" id="addSubareaWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div style="height:31px;overflow:hidden;" split="false" border="false" >
@@ -266,32 +270,30 @@
 					</tr>
 					<tr>
 						<td>分拣编码</td>
-						<td><input type="text" name="id" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text" name="id"   id="id" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>选择区域</td>
 						<td>
-						
-							<input class="easyui-combobox"   name="region.id" data-options="valueField:'id',textField:'info',url:'${pageContext.request.contextPath }/region_ajaxlist',required:true" />
-						
+							<input class="easyui-combobox"  id="regionId"  name="region.id" data-options="valueField:'id',textField:'info',url:'${pageContext.request.contextPath }/region_ajaxlist',required:true" />
 						</td>
 					</tr>
 					<tr>
 						<td>关键字</td>
-						<td><input type="text" name="addresskey" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="addresskey"  name="addresskey" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>起始号</td>
-						<td><input type="text" name="startnum" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="startnum"  name="startnum" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>终止号</td>
-						<td><input type="text" name="endnum" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"   id="endnum"  name="endnum" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>单双号</td>
 						<td>
-							<select class="easyui-combobox" name="single" style="width:150px;">  
+							<select class="easyui-combobox"   id="single"  name="single" style="width:150px;">  
 							    <option value="0">单双号</option>  
 							    <option value="1">单号</option>  
 							    <option value="2">双号</option>  
@@ -300,7 +302,7 @@
 					</tr>
 					<tr>
 						<td>位置信息</td>
-						<td><input type="text" name="position" class="easyui-validatebox" required="true" style="width:250px;"/></td>
+						<td><input type="text" name="position"   id="position"   class="easyui-validatebox" required="true" style="width:250px;"/></td>
 					</tr>
 				</table>
 			</form>

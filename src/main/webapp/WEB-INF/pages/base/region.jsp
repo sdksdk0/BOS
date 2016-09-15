@@ -29,30 +29,19 @@
 <!-- 导入一键上传 js -->
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/ocupload/jquery.ocupload-1.1.2.js"></script>
 <script type="text/javascript">
-	function doAdd(){
-		$('#addRegionWindow').window("open");
-	}
-	
-	function doView(){
-		alert("修改...");
-	}
+
 	
 	function doDelete(){
-		alert("删除...");
+		var array = $('#grid').datagrid('getSelections'); 
+		if(array.length == 0){
+			$.messager.alert('警告','请先选择数据！','warning');
+		}else{
+			$('#delForm').submit();
+		}
 	}
 	
 	//工具栏
 	var toolbar = [ {
-		id : 'button-edit',	
-		text : '修改',
-		iconCls : 'icon-edit',
-		handler : doView
-	}, {
-		id : 'button-add',
-		text : '增加',
-		iconCls : 'icon-add',
-		handler : doAdd
-	}, {
 		id : 'button-delete',
 		text : '删除',
 		iconCls : 'icon-cancel',
@@ -128,6 +117,19 @@
 	        height: 400,
 	        resizable:false
 	    });
+	    
+	    
+	    $('#save').click(function(){
+			// 进行form 校验
+			if($('#regionForm').form('validate')){
+				// 通过校验
+				$('#regionForm').submit();
+			}else{
+				// 校验失败 
+				$.messager.alert('警告','格式错误，请重新输入','warning');
+			}
+		});
+	    
 		
 		// 对批量导入添加一键上传效果 
 		$('#button-import').upload({
@@ -142,15 +144,29 @@
 		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	function doDblClickRow(rowIndex, rowData){
+		// form回显
+		$('#id').val(rowData.id);
+		$('#id').attr('readonly','readonly');
+		$('#province').val(rowData.province);
+		$('#city').val(rowData.city);
+		$('#district').val(rowData.district);
+		$('#postcode').val(rowData.postcode);
+		$('#shortcode').val(rowData.shortcode);
+		$('#citycode').val(rowData.citycode);
+		
+
+		// 弹出窗口
+		$('#addRegionWindow').window('open');
 	}
 </script>	
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
-	<div region="center" border="false">
-    	<table id="grid"></table>
-	</div>
+	<form id="delForm" action="${pageContext.request.contextPath }/region_delete" method="post">
+		<div region="center" border="false">
+	    	<table id="grid"></table>
+		</div>
+	</form>
 	<div class="easyui-window" title="区域添加修改" id="addRegionWindow" collapsible="false" minimizable="false" maximizable="false" style="top:20px;left:200px">
 		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
 			<div class="datagrid-toolbar">
@@ -159,34 +175,38 @@
 		</div>
 		
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form  id="regionForm" action="${pageContext.request.contextPath }/region_saveOrUpdate" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">区域信息</td>
 					</tr>
 					<tr>
+						<td><input type="hidden" id="id" name="id" /></td>
+					</tr> 
+					
+					<tr>
 						<td>省</td>
-						<td><input type="text" name="province" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="province"  name="province" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>市</td>
-						<td><input type="text" name="city" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"    id="city" name="city" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>区</td>
-						<td><input type="text" name="district" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"   id="district" name="district" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>邮编</td>
-						<td><input type="text" name="postcode" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="postcode" name="postcode" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>简码</td>
-						<td><input type="text" name="shortcode" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="shortcode"  name="shortcode" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					<tr>
 						<td>城市编码</td>
-						<td><input type="text" name="citycode" class="easyui-validatebox" required="true"/></td>
+						<td><input type="text"  id="citycode"  name="citycode" class="easyui-validatebox" required="true"/></td>
 					</tr>
 					</table>
 			</form>

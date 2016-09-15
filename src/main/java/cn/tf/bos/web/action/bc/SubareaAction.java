@@ -34,8 +34,6 @@ import cn.tf.bos.utils.FileUtils;
 import cn.tf.bos.utils.PinYin4jUtils;
 import cn.tf.bos.web.action.BaseAction;
 
-
-
 //标准管理
 public class SubareaAction extends BaseAction  implements ModelDriven<Subarea>{
 	
@@ -49,6 +47,13 @@ private Subarea subarea=new Subarea();
 		subareaService.saveOrUpdate(subarea);
 		return "saveOrUpdate";
 	}
+	
+	public String delete(){
+		String[] ids=subarea.getId().split(", "); 
+		subareaService.delete(ids);	
+		return "delete";
+	}
+	
 	
 	//条件分页查询
 	public String findByPage(){
@@ -76,8 +81,6 @@ private Subarea subarea=new Subarea();
 				detachedCriteria.add(Restrictions.like("r.district", "%" + subarea.getRegion().getDistrict() + "%"));
 			}
 		}		
-		
-		
 		PageRequestBean pageRequestBean=initPageRequestBean(detachedCriteria);
 		
 		PageResponseBean pageResponseBean=subareaService.findByPage(pageRequestBean);

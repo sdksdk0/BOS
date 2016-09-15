@@ -103,6 +103,8 @@
 					\[\d+\]\.info
 				</param>
 			</result>
+			<result name="saveOrUpdate">/WEB-INF/pages/base/region.jsp</result>
+			<result name="delete">/WEB-INF/pages/base/region.jsp</result>
 		</action>
 		
 			<!-- 分区设置 -->
@@ -128,7 +130,7 @@
 					<param name="contentType">application/vnd.ms-excel</param>
 					<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
 				</result>
-	
+				<result name="delete">/WEB-INF/pages/base/subarea.jsp</result>
 	</action>
 	
 	

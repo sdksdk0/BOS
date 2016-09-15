@@ -11,6 +11,8 @@ public interface SubareaService extends PageQuery{
 
 	void saveOrUpdate(Subarea subarea);
 
+	void delete(String[] ids);
+
 	
 
 

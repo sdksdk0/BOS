@@ -12,5 +12,4 @@ public interface StaffService extends PageQuery{
 
 	void delete(String[] ids, String value);
 
-	
 }

@@ -249,10 +249,9 @@
 						<td colspan="2">收派员信息</td>
 					</tr>
 					
-				<!-- 	<tr>
-						<td>取派员编号</td>
-						<td><input type="text" id="id" name="id" class="easyui-validatebox" required="true"/></td>
-					</tr> -->
+				 	<tr>
+						<td><input type="hidden" id="id" name="id" /></td>
+					</tr> 
 					<tr>
 						<td>姓名</td>
 						<td><input type="text" id="name" name="name" class="easyui-validatebox" required="true"/></td>

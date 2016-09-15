@@ -55,7 +55,6 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 	public String deleteOrRestom(){
 		
 		String value=ServletActionContext.getRequest().getParameter("mark");
-		System.out.println(value);
 		String value1;
 		if(value.equals("1")){
 				value1="1";	
@@ -63,7 +62,7 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 				value1="0";
 		}
 		String[] ids=staff.getId().split(", ");
-		System.out.println(value1);
+	
 		staffService.delete(ids,value1);
 		return "delete";
 	}

@@ -44,9 +44,19 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 
 		return "ajaxlist";
 	}
+	//保存或修改
+	public String saveOrUpdate(){
+		regionService.saveOrUpdate(region);
+		return "saveOrUpdate";
+	}
 	
 	
-	
+	//删除
+	public String delete(){
+		String[] ids=region.getId().split(", ");
+		regionService.delete(ids);
+		return "delete";
+	}
 
 	//分页查询
 	public String findByPage(){
