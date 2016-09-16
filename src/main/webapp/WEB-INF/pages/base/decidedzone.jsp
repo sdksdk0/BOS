@@ -49,11 +49,32 @@
 		var rowData=$('#grid').datagrid('getSelected');
 		if(rowData==null){
 			$.messager.alert('警告','请先选择数据','waring');
+		}else{
+			$('#noassociationSelect').html('');
+			$('#associationSelect').html('');
 			
+			$.post("${pageContext.request.contextPath}/decidedzone_findNoAssoctionCustomer",function(data){
+				$(data).each(function(){
+					var option = $("<option value='"+this.id+"'>"+this.name+"("+this.address+")</option>");
+					$('#noassociationSelect').append(option);
+				
+				});
+			});
+			
+			$.post("${pageContext.request.contextPath}/decidedzone_findHasAssoctionCustomer",{id:rowData.id},function(data){
+				$(data).each(function(){
+					var option = $("<option value='"+this.id+"'>"+this.name+"("+this.address+")</option>");
+					$('#associationSelect').append(option);
+				});
+			});
+			
+		
+		
+			$('#customerWindow').window("open");
 		}
 	
 	
-		$('#customerWindow'),window("open");
+		
 	}
 	
 	//工具栏
@@ -137,7 +158,8 @@
 			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
 			idField : 'id',
 			columns : columns,
-			onDblClickRow : doDblClickRow
+			onDblClickRow : doDblClickRow,
+			singleSelect:true
 		});
 		
 		// 添加、修改定区
@@ -173,6 +195,27 @@
 				$.messager.alert('警告','输入格式错误','waring');
 			}
 		});
+		
+		//左右移动
+		$('#toRight').click(function(){
+			// 将未关联 移到 已经关联
+			$('#associationSelect').append($('#noassociationSelect option:selected'));
+		});
+		$('#toLeft').click(function(){
+			$('#noassociationSelect').append($('#associationSelect option:selected'));
+		});
+		
+		// 点击关联客户，提交表单
+		$('#associationBtn').click(function(){
+			// 关联select 中所有option 选中
+			$('#associationSelect option').attr('selected','selected');
+			// 提交表单
+			$('#customerDecidedZoneId').val($('#grid').datagrid('getSelected').id);
+			$('#customerForm').submit();
+		});
+		
+		
+		
 
 	});
 
@@ -363,7 +406,7 @@
 	<!-- 关联客户窗口 -->
 	<div class="easyui-window" title="关联客户窗口" id="customerWindow" collapsible="false" closed="true" minimizable="false" maximizable="false" style="top:20px;left:200px;width: 400px;height: 300px;">
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form id="customerForm" method="post">
+			<form id="customerForm" method="post"   action="${pageContext.request.contextPath }/decidedzone_assignedCustomerToDecidedzone">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="3">关联客户</td>
@@ -374,8 +417,8 @@
 							<select id="noassociationSelect" multiple="multiple" size="10"></select>
 						</td>
 						<td>
-							<input type="button" value="》》" id="toRight"><br/>
-							<input type="button" value="《《" id="toLeft">
+							<input type="button" value=">>>" id="toRight"><br/>
+							<input type="button" value="<<<" id="toLeft">
 						</td>
 						<td>
 							<select id="associationSelect" name="customerIds" multiple="multiple" size="10"></select>

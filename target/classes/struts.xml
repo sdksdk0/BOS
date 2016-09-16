@@ -164,6 +164,14 @@
 			</param>
 			
 		</result>
+		
+		<result name="findNoAssoctionCustomer"  type="json">
+			<param name="root">customers</param>
+		</result>
+		<result name="findHasAssoctionCustomer" type="json">
+			<param name="root">customers</param>
+		</result>
+		<result name="assignedCustomerToDecidedzone">/WEB-INF/pages/base/decidedzone.jsp</result>
 	</action>
 	
 	

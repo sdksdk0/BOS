@@ -1,6 +1,8 @@
 package cn.tf.bos.web.action.bc;
 
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -10,6 +12,7 @@ import cn.tf.bos.domain.bc.Decidedzone;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.web.action.BaseAction;
+import cn.tf.boscrm.domain.Customer;
 
 
 //标准管理
@@ -42,6 +45,32 @@ private Decidedzone decidedzone=new Decidedzone();
 		
 		return "findByPage";
 	}
+	
+	//查询已关联的
+	public String findHasAssoctionCustomer(){
+		List<Customer>  customers=customerService.findHasAssoctionCustomer(decidedzone.getId());
+		ActionContext.getContext().put("customers", customers);
+		return "findHasAssoctionCustomer";
+	}
+	
+	//查询未关联的
+	public String findNoAssoctionCustomer(){
+		List<Customer>  customers=customerService.findNoAssoctionCustomer();
+		ActionContext.getContext().put("customers", customers);
+		return "findNoAssoctionCustomer";	
+	}
+	//关联客户到定区
+	public String assignedCustomerToDecidedzone(){
+		customerService.assignedCustomerToDecidedzone(customerIds, decidedzone.getId());
+		return "assignedCustomerToDecidedzone";
+	}
+	
+	private String[] customerIds;
+	
+	public void setCustomerIds(String[] customerIds) {
+		this.customerIds = customerIds;
+	}
+	
 	
 
 }

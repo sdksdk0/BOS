@@ -11,6 +11,7 @@ import cn.tf.bos.service.bc.StaffService;
 import cn.tf.bos.service.bc.StandardService;
 import cn.tf.bos.service.bc.SubareaService;
 import cn.tf.bos.service.user.UserService;
+import cn.tf.boscrm.service.CustomerService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -37,6 +38,11 @@ public abstract class BaseAction  extends ActionSupport  {
 	
 	@Resource(name = "decidedzoneService")
 	protected DecidedzoneService decidedzoneService;
+	
+	
+	@Resource(name = "customerService")
+	protected CustomerService customerService;
+	
 	
 	
 	private int page;
