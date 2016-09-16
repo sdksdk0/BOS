@@ -78,17 +78,17 @@
 	var columns = [ [ {
 		field : 'id',
 		title : '定区编号',
-		width : 120,
+		width : 200,
 		align : 'center'
 	},{
 		field : 'name',
 		title : '定区名称',
-		width : 120,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'staff.name',
 		title : '负责人',
-		width : 120,
+		width : 200,
 		align : 'center',
 		formatter : function(data,row ,index){
 			return row.staff.name;
@@ -96,7 +96,7 @@
 	}, {
 		field : 'staff.telephone',
 		title : '联系电话',
-		width : 120,
+		width : 200,
 		align : 'center',
 		formatter : function(data,row ,index){
 			return row.staff.telephone;
@@ -104,7 +104,7 @@
 	}, {
 		field : 'staff.station',
 		title : '所属公司',
-		width : 120,
+		width : 200,
 		align : 'center',
 		formatter : function(data,row ,index){
 			return row.staff.station;
@@ -125,7 +125,7 @@
 			pageList: [30,50,100],
 			pagination : true,
 			toolbar : toolbar,
-			url : "json/decidedzone.json",
+			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow
@@ -156,16 +156,28 @@
 			alert("执行查询...");
 		});
 		
+		
+		$('#save').click(function(){
+			if($('#decidedzoneForm').form('validate')){
+				$('#decidedzoneForm').submit();
+			}else{
+				$.messager.alert('警告','输入格式错误','waring');
+			}
+		});
+		
+		
+		
 	});
 
-	function doDblClickRow(){
-		alert("双击表格数据...");
+	function doDblClickRow(rpwIndex,rowData){
+	
 		$('#association_subarea').datagrid( {
 			fit : true,
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_subarea.json",
+			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
+			queryParams:{"decidedzone.id":rowData.id},
 			columns : [ [{
 				field : 'id',
 				title : '分拣编号',
@@ -174,7 +186,7 @@
 			},{
 				field : 'province',
 				title : '省',
-				width : 120,
+				width : 200,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.province;
@@ -182,7 +194,7 @@
 			}, {
 				field : 'city',
 				title : '市',
-				width : 120,
+				width : 200,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.city;
@@ -190,7 +202,7 @@
 			}, {
 				field : 'district',
 				title : '区',
-				width : 120,
+				width : 200,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.district;
@@ -198,7 +210,7 @@
 			}, {
 				field : 'addresskey',
 				title : '关键字',
-				width : 120,
+				width : 200,
 				align : 'center'
 			}, {
 				field : 'startnum',
@@ -227,7 +239,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "json/association_customer.json",
+			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
 			columns : [[{
 				field : 'id',
 				title : '客户编号',
@@ -275,7 +287,7 @@
 		</div>
 		
 		<div style="overflow:auto;padding:5px;" border="false">
-			<form>
+			<form id="decidedzoneForm" action="${pageContext.request.contextPath }/decidedzone_saveOrUpdate"  method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">定区信息</td>
@@ -291,17 +303,17 @@
 					<tr>
 						<td>选择负责人</td>
 						<td>
-							<input class="easyui-combobox" name="region.id"  
-    							data-options="valueField:'id',textField:'name',url:'json/standard.json'" />  
+							<input class="easyui-combobox" name="staff.id"  
+    							data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/staff_ajaxlist'" />  
 						</td>
 					</tr>
 					<tr height="300">
 						<td valign="top">关联分区</td>
 						<td>
-							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'json/decidedzone_subarea.json',fitColumns:true,singleSelect:false">
+							<table id="subareaGrid"  class="easyui-datagrid" border="false" style="width:300px;height:300px" data-options="url:'${pageContext.request.contextPath }/subarea_findnoassoriations',fitColumns:true,singleSelect:false">
 								<thead>  
 							        <tr>  
-							            <th data-options="field:'id',width:30,checkbox:true">编号</th>  
+							            <th data-options="field:'subareaId',width:30,checkbox:true">编号</th>  
 							            <th data-options="field:'addresskey',width:150">关键字</th>  
 							            <th data-options="field:'position',width:200,align:'right'">位置</th>  
 							        </tr>  

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.tf.bos.dao.BaseDao;
+import cn.tf.bos.domain.bc.Decidedzone;
 import cn.tf.bos.domain.bc.Region;
 import cn.tf.bos.domain.bc.Staff;
 import cn.tf.bos.domain.bc.Standard;
@@ -32,7 +33,8 @@ public abstract class BaseService {
 	@Resource(name="subareaDao")
 	protected BaseDao<Subarea>  subareaDao;
 	
-	
+	@Resource(name="decidedzoneDao")
+	protected BaseDao<Decidedzone>  decidedzoneDao;
 	
 	// 分页通用代码
 	public <T> PageResponseBean pageQuery(PageRequestBean pageRequestBean, BaseDao<T> dao) {

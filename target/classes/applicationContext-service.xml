@@ -16,6 +16,8 @@
 	<bean id="staffService"  class="cn.tf.bos.service.impl.bc.StaffServiceImpl"></bean>
 	<bean id="regionService"  class="cn.tf.bos.service.impl.bc.RegionServiceImpl"></bean>
 	<bean id="subareaService"  class="cn.tf.bos.service.impl.bc.SubareaServiceImpl"></bean>
+	<bean id="decidedzoneService"  class="cn.tf.bos.service.impl.bc.DecidedzoneServiceImpl"></bean>
+	
 	
 	
 	

@@ -35,4 +35,12 @@
             <one-to-many class="cn.tf.bos.domain.bc.Decidedzone" />
         </set>
     </class>
+    
+    <query name="staff.findAllNoDelete">
+    	<![CDATA[from Staff where deltag = '0']]>
+    
+    </query>
+    
+    
+    
 </hibernate-mapping>

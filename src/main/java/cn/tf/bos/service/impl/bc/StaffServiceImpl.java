@@ -47,4 +47,10 @@ public class StaffServiceImpl extends BaseService  implements StaffService{
 			}
 		}	
 	}
+
+	@Override
+	public List<Staff> findAllNoDelete() {
+		
+		return staffDao.findByNameQuery("staff.findAllNoDelete");
+	}
 }

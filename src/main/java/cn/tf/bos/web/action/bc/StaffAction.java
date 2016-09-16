@@ -34,8 +34,6 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 		staffService.saveOrUpdate(staff);
 		return "saveOrUpdate";
 	}
-	
-	
 
 	//分页查询
 	public String findByPage(){
@@ -66,5 +64,16 @@ public class StaffAction extends BaseAction  implements ModelDriven<Staff>{
 		staffService.delete(ids,value1);
 		return "delete";
 	}
+	
+	//查询取派员的json的列表
+	public String ajaxlist(){
+		List<Staff>  staffs=staffService.findAllNoDelete();
+		
+		ActionContext.getContext().put("staffs", staffs);
+		
+		return "ajaxlist";
+	}
+	
+	
 
 }

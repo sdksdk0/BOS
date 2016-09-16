@@ -17,7 +17,11 @@ public class Decidedzone  implements java.io.Serializable {
      private Staff staff;
      private String name;
      private Set subareas = new HashSet(0);
-	public String getId() {
+	
+     
+     
+     
+     public String getId() {
 		return id;
 	}
 	public void setId(String id) {

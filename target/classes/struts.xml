@@ -86,6 +86,13 @@
 				</param>
 				</result>
 				<result name="delete">/WEB-INF/pages/base/staff.jsp</result>	
+				<result name="ajaxlist"  type="json">
+					<param name="root">staffs</param>
+					<param name="includeProperties">
+						\[\d+\]\.id,
+						\[\d+\]\.name
+					</param>
+				</result>
 		</action>
 		
 		<!-- 区域设置 -->
@@ -131,6 +138,32 @@
 					<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
 				</result>
 				<result name="delete">/WEB-INF/pages/base/subarea.jsp</result>
+				<result name="findnoassoriations"  type="json">
+						<param name="root">subareas</param>
+						<param name="includeProterties">
+							\[\d+\]\.subareaId,
+							\[\d+\]\.addresskey,
+							\[\d+\]\.position
+						</param>
+				</result>
+	</action>
+	
+	
+	
+	<action  name="decidedzone_*"  class="decidedzoneAction"  method="{1}">
+		<result name="saveOrUpdate">/WEB-INF/pages/base/decidedzone.jsp</result>
+		<result name="findByPage" type="json">
+			<param name="root">pageResponseBean</param>
+			<param name="includeProperties">
+				total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.staff\.name,
+					rows\[\d+\]\.staff\.telephone,
+					rows\[\d+\]\.staff\.station
+			</param>
+			
+		</result>
 	</action>
 	
 	

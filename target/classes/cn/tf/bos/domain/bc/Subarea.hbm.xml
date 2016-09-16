@@ -32,4 +32,10 @@
             <column name="position" />
         </property>
     </class>
+    
+    <query name="Subarea.findnoassoriations">
+    	<![CDATA[from Subarea where decidedzone is null]]>
+    </query>
+    
+    
 </hibernate-mapping>

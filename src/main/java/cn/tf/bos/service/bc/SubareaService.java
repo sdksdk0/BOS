@@ -1,5 +1,7 @@
 package cn.tf.bos.service.bc;
 
+import java.util.List;
+
 import cn.tf.bos.domain.bc.Subarea;
 import cn.tf.bos.page.PageQuery;
 import cn.tf.bos.page.PageRequestBean;
@@ -12,6 +14,8 @@ public interface SubareaService extends PageQuery{
 	void saveOrUpdate(Subarea subarea);
 
 	void delete(String[] ids);
+
+	List<Subarea> findnoassoriations();
 
 	
 

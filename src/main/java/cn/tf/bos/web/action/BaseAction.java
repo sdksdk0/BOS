@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.hibernate.criterion.DetachedCriteria;
 
 import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.service.bc.DecidedzoneService;
 import cn.tf.bos.service.bc.RegionService;
 import cn.tf.bos.service.bc.StaffService;
 import cn.tf.bos.service.bc.StandardService;
@@ -32,6 +33,11 @@ public abstract class BaseAction  extends ActionSupport  {
 	
 	@Resource(name = "subareaService")
 	protected SubareaService subareaService;
+	
+	
+	@Resource(name = "decidedzoneService")
+	protected DecidedzoneService decidedzoneService;
+	
 	
 	private int page;
 	private int rows;

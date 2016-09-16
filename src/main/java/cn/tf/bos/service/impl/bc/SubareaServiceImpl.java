@@ -40,5 +40,10 @@ public class SubareaServiceImpl extends BaseService  implements SubareaService{
 		
 	}
 
+	@Override
+	public List<Subarea> findnoassoriations() {
+		return subareaDao.findByNameQuery("Subarea.findnoassoriations");
+	}
+
 	
 }

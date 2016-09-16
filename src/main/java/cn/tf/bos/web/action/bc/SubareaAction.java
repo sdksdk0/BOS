@@ -145,5 +145,17 @@ private Subarea subarea=new Subarea();
 		return new ByteArrayInputStream(data);
 
 	}
+	
+	
+	//查询所哦于未关联定区的分区列表
+	public String findnoassoriations(){
+		List<Subarea>  subareas=subareaService.findnoassoriations();
+		
+		ActionContext.getContext().put("subareas", subareas);
+		return "findnoassoriations";
+	}
+	
+	
+	
 
 }
