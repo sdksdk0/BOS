@@ -15,6 +15,7 @@
 	<import resource="classpath:applicationContext-dao.xml"/>
 	<import resource="classpath:applicationContext-service.xml"/>
 	<import resource="classpath:applicationContext-action.xml"/>
+	<import resource="classpath:applicationContext-remote.xml"/>
 	
 	
 </beans>
