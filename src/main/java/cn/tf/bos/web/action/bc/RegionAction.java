@@ -73,7 +73,6 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 	//接收上传的数据
 	public String OCimport() throws IOException{
 		
-		System.out.println("bb");
 		// 1、 工作薄对象
 		HSSFWorkbook hssfWorkbook = new HSSFWorkbook(new FileInputStream(upload));
 		// 解析工作薄
@@ -82,7 +81,7 @@ public class RegionAction extends BaseAction  implements ModelDriven<Region>{
 		// 2、 获得Sheet
 		HSSFSheet sheet = hssfWorkbook.getSheetAt(0); // 获得第一个sheet
 
-		System.out.println("aa");
+
 		// 3、遍历每一行
 		for (Row row : sheet) {
 	
