@@ -36,6 +36,9 @@
     <query name="Subarea.findnoassoriations">
     	<![CDATA[from Subarea where decidedzone is null]]>
     </query>
+    <query name="subarea.findById">
+    	<![CDATA[from Subarea s  where s.decidedzone.id=? ]]>
+    </query>
     
     
 </hibernate-mapping>

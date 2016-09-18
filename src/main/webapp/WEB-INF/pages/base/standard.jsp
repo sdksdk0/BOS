@@ -37,9 +37,6 @@
 		$('#addStandardWindow').window("open");
 	}
 	
-	function doView(){
-		alert("查看...");
-	}
 	
 	function doDelete(){
 		// 判断是否选择表格数据 
@@ -54,12 +51,7 @@
 		$('#delForm').submit();
 	}
 	//工具栏
-	var toolbar = [ {
-		id : 'button-view',	
-		text : '查询',
-		iconCls : 'icon-search',
-		handler : doView
-	}, {
+	var toolbar = [{
 		id : 'button-add',
 		text : '增加',
 		iconCls : 'icon-add',

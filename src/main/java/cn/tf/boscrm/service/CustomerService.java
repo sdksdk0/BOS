@@ -14,4 +14,5 @@ public interface CustomerService {
 	//关联到定区
 	public void assignedCustomerToDecidedzone(String [] customerIds,String decidedzoneId);
 
+
 }

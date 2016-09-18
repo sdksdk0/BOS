@@ -41,11 +41,7 @@
 		//alert("增加...");
 		$('#addStaffWindow').window("open");
 	}
-	
-	function doView(){
-		alert("查看...");
-	}
-	
+
 	// 作废操作 
 	function doDelete(){
 		// 先判断 用户是否选择
@@ -71,11 +67,6 @@
 	}
 	//工具栏
 	var toolbar = [ {
-		id : 'button-view',	
-		text : '查询',
-		iconCls : 'icon-search',
-		handler : doView
-	}, {
 		id : 'button-add',
 		text : '增加',
 		iconCls : 'icon-add',

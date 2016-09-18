@@ -146,6 +146,22 @@
 							\[\d+\]\.position
 						</param>
 				</result>
+				<result name="findById"  type="json"> 
+					<param name="root">subareas</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+				
+					\[\d+\]\.id,
+					\[\d+\]\.addresskey,
+					\[\d+\]\.startnum,
+					\[\d+\]\.endnum,
+					\[\d+\]\.single,
+					\[\d+\]\.position,
+					\[\d+\]\.region\.province,
+					\[\d+\]\.region\.city,
+					\[\d+\]\.region\.district
+				</param>
+				</result>
 	</action>
 	
 	
@@ -172,6 +188,10 @@
 			<param name="root">customers</param>
 		</result>
 		<result name="assignedCustomerToDecidedzone">/WEB-INF/pages/base/decidedzone.jsp</result>
+		<result name="findCustomer"  type="json">
+			<param name="root">customers</param>
+		</result>
+
 	</action>
 	
 	

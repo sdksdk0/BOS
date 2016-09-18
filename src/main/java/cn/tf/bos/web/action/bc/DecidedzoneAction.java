@@ -71,6 +71,16 @@ private Decidedzone decidedzone=new Decidedzone();
 		this.customerIds = customerIds;
 	}
 	
+	//双击之后在页面下方显示该定区已绑定的客户信息
+	public String  findCustomer(){
+		
+		List<Customer>  customers=customerService.findHasAssoctionCustomer(decidedzone.getId());
+		ActionContext.getContext().put("customers", customers);
+		
+		return "findCustomer";
+	}
+	
+	
 	
 
 }

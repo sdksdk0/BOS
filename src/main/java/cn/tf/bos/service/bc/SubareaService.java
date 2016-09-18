@@ -17,6 +17,8 @@ public interface SubareaService extends PageQuery{
 
 	List<Subarea> findnoassoriations();
 
+	List<Subarea> findById(String id);
+
 	
 
 

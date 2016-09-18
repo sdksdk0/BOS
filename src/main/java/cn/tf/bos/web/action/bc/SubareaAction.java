@@ -42,8 +42,10 @@ private Subarea subarea=new Subarea();
 	public Subarea getModel() {
 		return subarea;
 	}
-	
+
+
 	public String saveOrUpdate(){
+
 		subareaService.saveOrUpdate(subarea);
 		return "saveOrUpdate";
 	}
@@ -147,13 +149,25 @@ private Subarea subarea=new Subarea();
 	}
 	
 	
-	//查询所哦于未关联定区的分区列表
+	//查询所有未关联定区的分区列表
 	public String findnoassoriations(){
 		List<Subarea>  subareas=subareaService.findnoassoriations();
 		
 		ActionContext.getContext().put("subareas", subareas);
 		return "findnoassoriations";
 	}
+	
+	//通过id查找
+	public String findById(){
+		
+		String id=subarea.getDecidedzone().getId();
+		List<Subarea>   subareas=subareaService.findById(id);
+		
+		ActionContext.getContext().put("subareas", subareas);
+		
+		return "findById";
+	}
+	
 	
 	
 	

@@ -152,7 +152,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			pageList: [30,50,100],
+			pageList: [2,5,10],
 			pagination : true,
 			toolbar : toolbar,
 			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
@@ -226,7 +226,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
+			url : "${pageContext.request.contextPath }/subarea_findById",
 			queryParams:{"decidedzone.id":rowData.id},
 			columns : [ [{
 				field : 'id',
@@ -236,7 +236,7 @@
 			},{
 				field : 'province',
 				title : '省',
-				width : 200,
+				width : 100,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.province;
@@ -244,7 +244,7 @@
 			}, {
 				field : 'city',
 				title : '市',
-				width : 200,
+				width : 100,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.city;
@@ -252,7 +252,7 @@
 			}, {
 				field : 'district',
 				title : '区',
-				width : 200,
+				width : 100,
 				align : 'center',
 				formatter : function(data,row ,index){
 					return row.region.district;
@@ -260,7 +260,7 @@
 			}, {
 				field : 'addresskey',
 				title : '关键字',
-				width : 200,
+				width : 100,
 				align : 'center'
 			}, {
 				field : 'startnum',
@@ -284,12 +284,13 @@
 				align : 'center'
 			} ] ]
 		});
-		$('#association_customer').datagrid( {
+		 $('#association_customer').datagrid( {
 			fit : true,
 			border : true,
 			rownumbers : true,
 			striped : true,
-			url : "${pageContext.request.contextPath }/decidedzone_findByPage",
+			url : "${pageContext.request.contextPath}/decidedzone_findCustomer",
+			queryParams:{"id":rowData.id},
 			columns : [[{
 				field : 'id',
 				title : '客户编号',
@@ -301,12 +302,12 @@
 				width : 120,
 				align : 'center'
 			}, {
-				field : 'station',
-				title : '所属单位',
+				field : 'address',
+				title : '地址',
 				width : 120,
 				align : 'center'
 			}]]
-		});
+		}); 
 		
 	}
 </script>	

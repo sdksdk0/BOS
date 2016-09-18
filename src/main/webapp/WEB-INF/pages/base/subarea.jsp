@@ -48,6 +48,15 @@
 
 
 	function doAdd(){
+		$('#id').val('');
+		$('#id').attr("readonly",false);
+		$('#addresskey').val('');
+		$('#startnum').val('');
+		$('#endnum').val('');
+		$('#single').val('');
+		$('#position').val('');
+		$('#regionId').combobox('setValue', null);  
+		
 		$('#addSubareaWindow').window("open");
 	}
 	
@@ -274,7 +283,7 @@
 					</tr>
 					<tr>
 						<td>选择区域</td>
-						<td>
+						<td><!-- region.id -->
 							<input class="easyui-combobox"  id="regionId"  name="region.id" data-options="valueField:'id',textField:'info',url:'${pageContext.request.contextPath }/region_ajaxlist',required:true" />
 						</td>
 					</tr>
