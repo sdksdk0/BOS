@@ -3,13 +3,22 @@ package cn.tf.bos.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.WildcardQuery;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
+import org.hibernate.search.FullTextQuery;
+import org.hibernate.search.FullTextSession;
+import org.hibernate.search.filter.impl.FullTextFilterImpl;
+import org.hibernate.search.impl.FullTextSessionImpl;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import cn.tf.bos.dao.BaseDao;
 import cn.tf.bos.domain.bc.Standard;
+import cn.tf.bos.page.PageResponseBean;
 
 public class BaseDaoImpl<T>  extends HibernateDaoSupport  implements BaseDao<T>{
 	String className;
@@ -77,6 +86,30 @@ public class BaseDaoImpl<T>  extends HibernateDaoSupport  implements BaseDao<T>{
 	public void saveOrUpdate(T t) {
 		this.getHibernateTemplate().saveOrUpdate(t);
 		
+	}
+
+
+	//luence查询
+	@Override
+	public PageResponseBean findByLucene(String conditionName,
+			String conditionValue, int page, int rows) {
+		Session session=this.getSession();
+		FullTextSession  fullTextSession=new FullTextSessionImpl(session);
+		
+		Query query=new WildcardQuery(new Term(conditionName,"*"+conditionValue+"*"));
+		
+		//获得全文检索的query
+		FullTextQuery  fullTextQuery=fullTextSession.createFullTextQuery(query);
+		PageResponseBean  pageResponseBean=new PageResponseBean();
+		pageResponseBean.setTotal(fullTextQuery.getResultSize());
+		
+		//当前页数据
+		int firstResult=(page-1)*rows;
+		int maxResults=rows;
+		List  list=fullTextQuery.setFirstResult(firstResult).setMaxResults(maxResults).list();
+		pageResponseBean.setRows(list);
+		
+		return pageResponseBean;
 	}
   
 }

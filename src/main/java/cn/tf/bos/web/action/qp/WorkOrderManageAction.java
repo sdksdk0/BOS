@@ -44,15 +44,39 @@ private WorkOrderManage workOrderManage=new  WorkOrderManage();
 	
 	//分页查询
 	public String findByPage(){
-		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(WorkOrderManage.class);
-		PageRequestBean  pageRequestBean=initPageRequestBean(detachedCriteria);
 		
-		PageResponseBean pageResponseBean=workordermanagerService.findByPage(pageRequestBean);
+		if(conditionName!=null && conditionName.trim().length()>0 && conditionValue!=null && conditionValue.trim().length()>0){
+			//有条件查询
+			PageResponseBean pageResponseBean=workordermanagerService.findByLucene(conditionName,conditionValue,page,rows);
+			ActionContext.getContext().put("pageResponseBean", pageResponseBean);
+			
+		}else{
+			DetachedCriteria detachedCriteria=DetachedCriteria.forClass(WorkOrderManage.class);
+			PageRequestBean  pageRequestBean=initPageRequestBean(detachedCriteria);
+			
+			PageResponseBean pageResponseBean=workordermanagerService.findByPage(pageRequestBean);
+			
+			ActionContext.getContext().put("pageResponseBean", pageResponseBean);
+		}
 		
-		ActionContext.getContext().put("pageResponseBean", pageResponseBean);
+		
+		
 		
 		return "findByPage";
 	}
+	
+	private String conditionName;
+	private String conditionValue;
+
+	public void setConditionName(String conditionName) {
+		this.conditionName = conditionName;
+	}
+
+	public void setConditionValue(String conditionValue) {
+		this.conditionValue = conditionValue;
+	}
+	
+	
 	
 	
 

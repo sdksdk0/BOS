@@ -53,8 +53,8 @@ public abstract class BaseAction  extends ActionSupport  {
 	protected WorkOrderManageService  workordermanagerService;
 	
 	
-	private int page;
-	private int rows;
+	protected  int page;
+	protected  int rows;
 
 	public void setPage(int page) {
 		this.page = page;

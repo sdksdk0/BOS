@@ -179,9 +179,37 @@
 		$('#grid').datagrid('beginEdit',rowIndex);
 		editIndex = rowIndex;
 	}
+	
+	function doSearch(value,name){
+		//将查询条件缓存到datagrid
+		$('#grid').datagrid('load',{
+			conditionName:name,
+			conditionValue:value
+		});
+	}
+	
+	
+	
 </script>
 </head>
 <body class="easyui-layout" style="visibility:hidden;">
+	<div data-options="region:'north'">
+		<!-- 编写搜索框 -->
+		<!--
+			 prompt 默认提示内容
+			 menu 搜索条件下拉选项 
+			 searcher 点击搜索按钮执行js函数名称
+		 -->
+		<input id="ss" class="easyui-searchbox" style="width:300px" 
+			data-options="prompt:'请输入您的查询内容',menu:'#nm',searcher:doSearch"/>
+			
+		<div id="nm">
+			<div data-options="name:'arrivecity'">按照到达地搜索</div>
+			<div data-options="name:'product'">按照货物名称搜索</div>
+		</div>
+	</div>
+	
+	
 	<div region="center" border="false">
     	<table id="grid"></table>
 	</div>

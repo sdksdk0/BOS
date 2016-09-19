@@ -19,5 +19,12 @@ public class WorkOrderManageServiceImpl  extends BaseService  implements  WorkOr
 		
 		return pageQuery(pageRequestBean, workordermanageDao );
 	}
+
+	@Override
+	public PageResponseBean findByLucene(String conditionName,
+			String conditionValue, int page, int rows) {
+		
+		return workordermanageDao.findByLucene(conditionName,conditionValue,page,rows);
+	}
 		
 }

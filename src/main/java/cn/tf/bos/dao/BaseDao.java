@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
 
 import cn.tf.bos.domain.bc.Standard;
+import cn.tf.bos.page.PageResponseBean;
 
 //通用Dao
 public interface  BaseDao<T> {
@@ -35,5 +36,9 @@ public interface  BaseDao<T> {
 			int firstResult, int maxResult);
 	
 	public void saveOrUpdate(T t);
+	
+	//luence查询
+	public PageResponseBean findByLucene(String conditionName,
+			String conditionValue, int page, int rows);
 	
 }
