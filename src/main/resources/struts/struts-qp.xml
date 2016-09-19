@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<package name="qp" extends="basicstruts2">
+		
+		
+	
+	<!-- 业务通知单 -->
+	<action name="noticebill_*"  class="noticebillAction"  method="{1}">
+			<result  name="save">/WEB-INF/pages/qupai/noticebill_add.jsp</result>
+	
+	</action>
+	
+	
+	<!-- 工作单 -->
+	<action name="workordermanage_*"   class="workordermanageAction"   method="{1}">
+		<result name="saveOrUpdate"   type="json">
+			<param name="root">map</param>
+		</result>
+
+	</action>
+	</package>
+
+</struts>

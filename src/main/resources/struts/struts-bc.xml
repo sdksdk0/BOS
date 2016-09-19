@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<package name="bc" extends="basicstruts2">
+		
+		
+		<action   name="standard_*"  class="standardAction"  method="{1}"  >
+				<result name="save">/WEB-INF/pages/base/standard.jsp</result>
+				<result name="findByPage"   type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total, <!-- pageResponseBean的 total 属性返回  -->
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.minweight,
+					rows\[\d+\]\.maxweight,
+					rows\[\d+\]\.updatetime,
+					rows\[\d+\]\.user\.username,
+					rows\[\d+\]\.user\.station
+				</param>
+				</result>
+				<result name="delete">/WEB-INF/pages/base/standard.jsp</result>
+				
+				<result  name="ajaxlist"  type="json">
+					<param name="root">standardlist</param>
+					<param name="includeProperties">
+						\[\d+\]\.id,
+						\[\d+\]\.name
+					</param>
+				</result>
+		</action>
+		
+		<!-- 取派员配置 -->
+		<action  name="staff_*"  class="staffAction"  method="{1}">
+				<result name="saveOrUpdate">/WEB-INF/pages/base/staff.jsp</result>
+				<result  name="findByPage"  type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.telephone,
+					rows\[\d+\]\.station,
+					rows\[\d+\]\.haspda,
+					rows\[\d+\]\.deltag,
+					rows\[\d+\]\.standard\.id,
+					rows\[\d+\]\.standard\.name
+				</param>
+				</result>
+				<result name="delete">/WEB-INF/pages/base/staff.jsp</result>	
+				<result name="ajaxlist"  type="json">
+					<param name="root">staffs</param>
+					<param name="includeProperties">
+						\[\d+\]\.id,
+						\[\d+\]\.name
+					</param>
+				</result>
+		</action>
+		
+		<!-- 区域设置 -->
+		<action name="region_*"  class="regionAction"  method="{1}">
+			<result  name="OCimport" type="json">
+				<param name="root">map</param>
+			</result>
+			<result name="findByPage"  type="json">
+				<param name="root">pageResponseBean</param>
+			</result>
+			<result name="ajaxlist" type="json">
+				<param name="root">regions</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.info
+				</param>
+			</result>
+			<result name="saveOrUpdate">/WEB-INF/pages/base/region.jsp</result>
+			<result name="delete">/WEB-INF/pages/base/region.jsp</result>
+		</action>
+		
+			<!-- 分区设置 -->
+	<action  name="subarea_*"  class="subareaAction"  method="{1}">
+		<result name="saveOrUpdate">/WEB-INF/pages/base/subarea.jsp</result>
+		<result  name="findByPage"  type="json">
+					<param name="root">pageResponseBean</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.addresskey,
+					rows\[\d+\]\.startnum,
+					rows\[\d+\]\.endnum,
+					rows\[\d+\]\.single,
+					rows\[\d+\]\.position,
+					rows\[\d+\]\.region\.province,
+					rows\[\d+\]\.region\.city,
+					rows\[\d+\]\.region\.district
+				</param>
+				</result>
+				<result name="exportFile"  type="stream">
+					<param name="contentType">application/vnd.ms-excel</param>
+					<param name="contentDisposition">attachment;filename=${downloadFileName}</param>
+				</result>
+				<result name="delete">/WEB-INF/pages/base/subarea.jsp</result>
+				<result name="findnoassoriations"  type="json">
+						<param name="root">subareas</param>
+						<param name="includeProterties">
+							\[\d+\]\.subareaId,
+							\[\d+\]\.addresskey,
+							\[\d+\]\.position
+						</param>
+				</result>
+				<result name="findById"  type="json"> 
+					<param name="root">subareas</param>
+					<param name="includeProperties">
+					<!-- 正则表达式 格式  -->
+				
+					\[\d+\]\.id,
+					\[\d+\]\.addresskey,
+					\[\d+\]\.startnum,
+					\[\d+\]\.endnum,
+					\[\d+\]\.single,
+					\[\d+\]\.position,
+					\[\d+\]\.region\.province,
+					\[\d+\]\.region\.city,
+					\[\d+\]\.region\.district
+				</param>
+				</result>
+	</action>
+	
+	
+	
+	<action  name="decidedzone_*"  class="decidedzoneAction"  method="{1}">
+		<result name="saveOrUpdate">/WEB-INF/pages/base/decidedzone.jsp</result>
+		<result name="findByPage" type="json">
+			<param name="root">pageResponseBean</param>
+			<param name="includeProperties">
+				total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.name,
+					rows\[\d+\]\.staff\.name,
+					rows\[\d+\]\.staff\.telephone,
+					rows\[\d+\]\.staff\.station
+			</param>
+			
+		</result>
+		
+		<result name="findNoAssoctionCustomer"  type="json">
+			<param name="root">customers</param>
+		</result>
+		<result name="findHasAssoctionCustomer" type="json">
+			<param name="root">customers</param>
+		</result>
+		<result name="assignedCustomerToDecidedzone">/WEB-INF/pages/base/decidedzone.jsp</result>
+		<result name="findCustomer"  type="json">
+			<param name="root">customers</param>
+		</result>
+
+	</action>
+	
+	</package>
+	
+
+</struts>

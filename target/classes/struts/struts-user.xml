@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<package name="user" extends="basicstruts2">
+		
+		<action name="user_*"  class="userAction" method="{1}">
+			<result name="editpassword"  type="json">
+					<param name="root">map</param>
+			</result>
+		</action>
+	</package>	
+		
+	
+	<package name="nologin"  extends="struts-default">
+			<!-- 登录功能 -->
+		<action name="login" class="loginAction">
+			<result name="input">/login.jsp</result>
+			<result type="redirect">/index.jsp</result>
+		</action>
+	</package>
+	
+
+</struts>

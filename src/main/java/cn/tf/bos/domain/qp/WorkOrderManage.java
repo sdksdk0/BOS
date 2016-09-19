@@ -19,17 +19,17 @@ public class WorkOrderManage implements java.io.Serializable {
 	
 	private String prodtimelimit;
 	private String prodtype;
-	private String sendername;
+	private String sendername;   //寄件人姓名
 	private String senderphone;
 	private String senderaddr;
-	private String receivername;
+	private String receivername;   //收货人姓名
 	private String receiverphone;
 	private String receiveraddr;
 	private Integer feeitemnum;
-	private Double actlweit;
-	private String vol;
-	private String managerCheck;
-	private Date updatetime;
+	private Double actlweit;    //实际重量
+	private String vol;   //体积
+	private String managerCheck="0";   //0未审批，1已审批
+	private Date updatetime;   //更新时间
 
 	// Constructors
 

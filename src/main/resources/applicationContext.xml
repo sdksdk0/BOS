@@ -11,11 +11,11 @@
 				http://www.springframework.org/schema/tx 
 				http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<import resource="classpath:applicationContext-common.xml"/>
-	<import resource="classpath:applicationContext-dao.xml"/>
-	<import resource="classpath:applicationContext-service.xml"/>
-	<import resource="classpath:applicationContext-action.xml"/>
-	<import resource="classpath:applicationContext-remote.xml"/>
+	<import resource="classpath:spring/applicationContext-common.xml"/>
+	<import resource="classpath:spring/applicationContext-dao.xml"/>
+	<import resource="classpath:spring/applicationContext-service.xml"/>
+	<import resource="classpath:spring/applicationContext-action.xml"/>
+	<import resource="classpath:spring/applicationContext-remote.xml"/>
 	
 	
 </beans>

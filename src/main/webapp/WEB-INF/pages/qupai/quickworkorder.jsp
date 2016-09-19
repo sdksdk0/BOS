@@ -34,7 +34,7 @@
 			$("#grid").datagrid('endEdit',editIndex);
 		}
 		if(editIndex==undefined){
-			//alert("快速添加电子单...");
+			
 			$("#grid").datagrid('insertRow',{
 				index : 0,
 				row : {}
@@ -77,7 +77,7 @@
 	var columns = [ [ {
 		field : 'id',
 		title : '工作单号',
-		width : 120,
+		width : 200,
 		align : 'center',
 		editor :{
 			type : 'validatebox',
@@ -88,7 +88,7 @@
 	}, {
 		field : 'arrivecity',
 		title : '到达地',
-		width : 120,
+		width : 200,
 		align : 'center',
 		editor :{
 			type : 'validatebox',
@@ -99,7 +99,7 @@
 	},{
 		field : 'product',
 		title : '产品',
-		width : 120,
+		width : 200,
 		align : 'center',
 		editor :{
 			type : 'validatebox',
@@ -110,7 +110,7 @@
 	}, {
 		field : 'num',
 		title : '件数',
-		width : 120,
+		width : 200,
 		align : 'center',
 		editor :{
 			type : 'numberbox',
@@ -121,7 +121,7 @@
 	}, {
 		field : 'weight',
 		title : '重量',
-		width : 120,
+		width : 200,
 		align : 'center',
 		editor :{
 			type : 'validatebox',
@@ -153,7 +153,7 @@
 			border : true,
 			rownumbers : true,
 			striped : true,
-			pageList: [30,50,100],
+			pageList: [2,5,10],
 			pagination : true,
 			toolbar : toolbar,
 			url :  "",
@@ -161,15 +161,21 @@
 			columns : columns,
 			onDblClickRow : doDblClickRow,
 			onAfterEdit : function(rowIndex, rowData, changes){
-				console.info(rowData);
 				editIndex = undefined;
+				//提交一个ajax请求，将编辑的行数据发送到服务器执行保存操作
+				$.post("${pageContext.request.contextPath}/workordermanage_saveOrUpdate",rowData,function(data){
+					 //如果是success就是成功
+					 if(data.result == "success"){
+						$('#grid').datagrid('reload');
+					}else{
+						$.messager.alert('保存失败',data.msg, 'error');
+					}
+				});
 			}
 		});
 	});
 
 	function doDblClickRow(rowIndex, rowData){
-		alert("双击表格数据...");
-		console.info(rowIndex);
 		$('#grid').datagrid('beginEdit',rowIndex);
 		editIndex = rowIndex;
 	}

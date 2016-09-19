@@ -19,6 +19,6 @@
 	<bean id="subareaAction"  class="cn.tf.bos.web.action.bc.SubareaAction"   scope="prototype"></bean>
 	<bean id="decidedzoneAction"  class="cn.tf.bos.web.action.bc.DecidedzoneAction"   scope="prototype"></bean>
 	<bean id="noticebillAction"  class="cn.tf.bos.web.action.qp.NoticeBillAction"   scope="prototype"></bean>
-	
+	<bean id="workordermanageAction"  class="cn.tf.bos.web.action.qp.WorkOrderManageAction"   scope="prototype"></bean>
 
 </beans>

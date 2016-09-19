@@ -12,6 +12,7 @@ import cn.tf.bos.domain.bc.Standard;
 import cn.tf.bos.domain.bc.Subarea;
 import cn.tf.bos.domain.qp.NoticeBill;
 import cn.tf.bos.domain.qp.WorkBill;
+import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
@@ -48,6 +49,10 @@ public abstract class BaseService {
 	
 	@Resource(name = "customerService")
 	protected CustomerService customerService;
+	
+	
+	@Resource(name="workordermanageDao")
+	protected BaseDao<WorkOrderManage>  workordermanageDao;
 	
 	
 	// 分页通用代码
