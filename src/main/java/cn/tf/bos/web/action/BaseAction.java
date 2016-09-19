@@ -10,6 +10,7 @@ import cn.tf.bos.service.bc.RegionService;
 import cn.tf.bos.service.bc.StaffService;
 import cn.tf.bos.service.bc.StandardService;
 import cn.tf.bos.service.bc.SubareaService;
+import cn.tf.bos.service.qp.NoticeBillService;
 import cn.tf.bos.service.user.UserService;
 import cn.tf.boscrm.service.CustomerService;
 
@@ -42,6 +43,10 @@ public abstract class BaseAction  extends ActionSupport  {
 	
 	@Resource(name = "customerService")
 	protected CustomerService customerService;
+	
+	@Resource(name = "noticebillService")
+	protected NoticeBillService noticebillService;
+	
 	
 	
 	

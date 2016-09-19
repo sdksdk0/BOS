@@ -10,9 +10,12 @@ import cn.tf.bos.domain.bc.Region;
 import cn.tf.bos.domain.bc.Staff;
 import cn.tf.bos.domain.bc.Standard;
 import cn.tf.bos.domain.bc.Subarea;
+import cn.tf.bos.domain.qp.NoticeBill;
+import cn.tf.bos.domain.qp.WorkBill;
 import cn.tf.bos.domain.user.User;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
+import cn.tf.boscrm.service.CustomerService;
 
 public abstract class BaseService {
 	@Resource(name="userDao")
@@ -35,6 +38,17 @@ public abstract class BaseService {
 	
 	@Resource(name="decidedzoneDao")
 	protected BaseDao<Decidedzone>  decidedzoneDao;
+	
+	
+	@Resource(name="noticebillDao")
+	protected BaseDao<NoticeBill>  noticebillDao;
+	
+	@Resource(name="workbillDao")
+	protected BaseDao<WorkBill>  workbillDao;
+	
+	@Resource(name = "customerService")
+	protected CustomerService customerService;
+	
 	
 	// 分页通用代码
 	public <T> PageResponseBean pageQuery(PageRequestBean pageRequestBean, BaseDao<T> dao) {

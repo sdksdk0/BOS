@@ -34,13 +34,14 @@ public class CustomerServiceTest {
 		
 		String[]  customerIds={"1"};
 		String decidedzoneId="1";
-		
-		
 		customerService.assignedCustomerToDecidedzone(customerIds, decidedzoneId);
-		
 	}
 	
-	
+	@Test
+	public void test4(){
+		String deciedZoneId=customerService.findDecideZoneIdByCustomerAddress("湖南衡阳珠晖区");
+		System.out.println(deciedZoneId);
+	}
 	
 
 }

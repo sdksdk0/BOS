@@ -40,5 +40,8 @@
     	<![CDATA[from Subarea s  where s.decidedzone.id=? ]]>
     </query>
     
+    <query name="subarea.findByAddress">
+    	<![CDATA[from Subarea   where addresskey=? ]]>
+    </query>
     
 </hibernate-mapping>
