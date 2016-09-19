@@ -22,7 +22,20 @@
 		<result name="saveOrUpdate"   type="json">
 			<param name="root">map</param>
 		</result>
-
+		<result name="findByPage"  type="json">
+			<param name="root">pageResponseBean</param>
+			<param name="includeProperties">
+				total,
+				rows\[\d+\]\.id,
+				rows\[\d+\]\.arrivecity,
+				rows\[\d+\]\.product,
+				rows\[\d+\]\.num,
+				rows\[\d+\]\.weight,
+				rows\[\d+\]\.floadreqr
+			
+			</param>
+			
+		</result>
 	</action>
 	</package>
 

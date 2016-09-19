@@ -3,10 +3,14 @@ package cn.tf.bos.web.action.qp;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hibernate.criterion.DetachedCriteria;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 
 import cn.tf.bos.domain.qp.WorkOrderManage;
+import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.web.action.BaseAction;
 
 
@@ -37,5 +41,19 @@ private WorkOrderManage workOrderManage=new  WorkOrderManage();
 		
 		return "saveOrUpdate";
 	}
+	
+	//分页查询
+	public String findByPage(){
+		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(WorkOrderManage.class);
+		PageRequestBean  pageRequestBean=initPageRequestBean(detachedCriteria);
+		
+		PageResponseBean pageResponseBean=workordermanagerService.findByPage(pageRequestBean);
+		
+		ActionContext.getContext().put("pageResponseBean", pageResponseBean);
+		
+		return "findByPage";
+	}
+	
+	
 
 }

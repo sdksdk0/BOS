@@ -156,7 +156,7 @@
 			pageList: [2,5,10],
 			pagination : true,
 			toolbar : toolbar,
-			url :  "",
+			url :  "${pageContext.request.contextPath}/workordermanage_findByPage",
 			idField : 'id',
 			columns : columns,
 			onDblClickRow : doDblClickRow,

@@ -34,6 +34,8 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- 配置索引库 -->
+				<prop key="hibernate.search.default.indexBase">d:/DBIndex</prop>
 			</props>
 		</property>
 		<!-- 映射hbm -->

@@ -2,16 +2,25 @@ package cn.tf.bos.domain.qp;
 
 import java.util.Date;
 
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.wltea.analyzer.lucene.IKAnalyzer;
+
 /**
  * WorkOrderManage entity. @author MyEclipse Persistence Tools
  */
-
+@Indexed
+@Analyzer(impl = IKAnalyzer.class)
 public class WorkOrderManage implements java.io.Serializable {
 
 	// Fields
-
+	@DocumentId
 	private String id;
+	@Field
 	private String arrivecity;  //到达城市
+	@Field
 	private String product;
 	private Integer num;
 	private Double weight;   //重量

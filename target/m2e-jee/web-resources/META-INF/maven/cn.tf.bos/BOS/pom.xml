@@ -123,7 +123,20 @@
 			<version>4.0.33</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>3.4.2.Final</version>
+		</dependency>
+		
+		<dependency>
+	        <groupId>org.wltea</groupId>
+	        <artifactId>IKAnalyzer</artifactId>
+	        <version>2012_u6</version>
+	        <scope>system</scope>
+	        <systemPath>E:\myeclipse_work\BOS\src\main\webapp\WEB-INF\lib\IKAnalyzer2012_u6.jar</systemPath>
+   		</dependency>
+		
 
 	</dependencies>
 	<build>
