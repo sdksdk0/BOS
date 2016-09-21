@@ -6,6 +6,18 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>BOS</name>
+	
+	<repositories>
+		<!--JBPM依赖包 maven2资源库 -->
+		<repository>
+			<id>Jboss-JBPM-Repositories</id>
+			<name>JbossJBPM</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+		</repository>
+	</repositories>
+	
+	
+	
 	<dependencies>
 		<!-- spring 3.2 -->
 		<dependency>
@@ -137,6 +149,46 @@
 	        <systemPath>E:\myeclipse_work\BOS\src\main\webapp\WEB-INF\lib\IKAnalyzer2012_u6.jar</systemPath>
    		</dependency>
 
+		<!-- 导入jbpm的坐标 -->
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-api</artifactId>
+			<version>4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-jpdl</artifactId>
+			<version>4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-pvm</artifactId>
+			<version>4.4</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-jdk14</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-log</artifactId>
+			<version>4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm.jbpm4</groupId>
+			<artifactId>jbpm-bpmn</artifactId>
+			<version>4.4</version>
+		</dependency> 
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -152,7 +204,45 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
+				
+					<!-- 引入 juel jar 包  -->
+				<dependencies>
+					<dependency>
+						<groupId>de.odysseus.juel</groupId>
+						<artifactId>juel-api</artifactId>
+						<version>2.2.6</version>
+					</dependency>
+					<dependency>
+						<groupId>de.odysseus.juel</groupId>
+						<artifactId>juel-impl</artifactId>
+						<version>2.2.6</version>
+					</dependency>
+				</dependencies>
+				
+				
 			</plugin>
 		</plugins>
 	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>juel</groupId>
+				<artifactId>juel-api</artifactId>
+				<version>2.2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>juel</groupId>
+				<artifactId>juel-impl</artifactId>
+				<version>2.2.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>juel</groupId>
+				<artifactId>juel-engine</artifactId>
+				<version>2.1.0</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

@@ -16,6 +16,7 @@
 	<import resource="classpath:spring/applicationContext-service.xml"/>
 	<import resource="classpath:spring/applicationContext-action.xml"/>
 	<import resource="classpath:spring/applicationContext-remote.xml"/>
+	<import resource="classpath:spring/applicationContext-jbpm.xml"/>
 	
 	
 </beans>

@@ -40,6 +40,17 @@
 		</property>
 		<!-- 映射hbm -->
 		<property name="mappingDirectoryLocations" value="classpath:cn/tf/bos/domain"></property>
+	
+		<property name="mappingResources">
+			<list>
+				<value>jbpm.repository.hbm.xml</value>
+				<value>jbpm.execution.hbm.xml</value>
+				<value>jbpm.history.hbm.xml</value>
+				<value>jbpm.task.hbm.xml</value>
+				<value>jbpm.identity.hbm.xml</value>
+			</list>
+		</property>
+	
 	</bean>
 	
 	<!-- 配置事务  -->
