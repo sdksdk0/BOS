@@ -39,7 +39,10 @@
                 <column name="user_id" length="32" />
             </key>
             <one-to-many class="cn.tf.bos.domain.bc.Standard" />
-        </set>
+        </set> 
+        
+        <many-to-one name="role" class="cn.tf.bos.domain.auth.Role" column="role_id"></many-to-one>
+        
     </class>
     
      <!-- 命名查询 -->

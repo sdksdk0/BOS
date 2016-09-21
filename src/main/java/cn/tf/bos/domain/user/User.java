@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import cn.tf.bos.domain.auth.Role;
+
 
 /**
  * User entity. @author MyEclipse Persistence Tools
@@ -24,6 +26,8 @@ public class User  implements java.io.Serializable {
      private String telephone;
      private String remark;
      private Set standards = new HashSet(0);
+     
+     private Role role;
 
 
     // Constructors
@@ -37,24 +41,36 @@ public class User  implements java.io.Serializable {
         this.id = id;
     }
     
-    /** full constructor */
-    public User(String id, String username, String password, String gender, Date birthday, Double salary, String station, String telephone, String remark, Set standards) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.gender = gender;
-        this.birthday = birthday;
-        this.salary = salary;
-        this.station = station;
-        this.telephone = telephone;
-        this.remark = remark;
-        this.standards = standards;
-    }
 
    
-    // Property accessors
+    public User(String id, String username, String password, String gender,
+			Date birthday, Double salary, String station, String telephone,
+			String remark, Set standards, Role role) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.salary = salary;
+		this.station = station;
+		this.telephone = telephone;
+		this.remark = remark;
+		this.standards = standards;
+		this.role = role;
+	}
 
-    public String getId() {
+	// Property accessors
+
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getId() {
         return this.id;
     }
     

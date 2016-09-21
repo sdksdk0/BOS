@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tf.bos.domain.auth.Role" table="auth_role">
+		<id name="id">
+			<generator class="uuid"></generator>
+		</id>
+		<property name="name" unique="true"></property>
+		<property name="description"></property>
+		
+		<!-- 关联 -->
+		<set name="functions" table="role_function">
+			<key column="role_id"></key>
+			<many-to-many class="cn.tf.bos.domain.auth.Function" column="function_id"></many-to-many>
+		</set>
+		<set name="users">
+			<key column="role_id"></key>
+			<one-to-many class="cn.tf.bos.domain.user.User"/>
+		</set>
+	</class>	
+</hibernate-mapping>

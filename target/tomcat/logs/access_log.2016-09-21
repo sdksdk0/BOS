@@ -41,3 +41,7 @@
 0:0:0:0:0:0:0:1 - - [21/Sep/2016:15:17:45 +0800] "GET /BOS/page_portal_gonggao.action?_=1474442265609 HTTP/1.1" 200 637 http-bio-8083-exec-3 147
 0:0:0:0:0:0:0:1 - - [21/Sep/2016:15:17:45 +0800] "GET /BOS/page_portal_yujing.action?_=1474442265637 HTTP/1.1" 200 614 http-bio-8083-exec-6 150
 0:0:0:0:0:0:0:1 - - [21/Sep/2016:15:17:45 +0800] "GET /BOS/page_portal_bug.action?_=1474442265649 HTTP/1.1" 200 861 http-bio-8083-exec-5 148
+0:0:0:0:0:0:0:1 - - [21/Sep/2016:16:35:39 +0800] "GET /BOS/index.jsp HTTP/1.1" 404 - http-bio-8083-exec-1 0
+0:0:0:0:0:0:0:1 - - [21/Sep/2016:16:37:11 +0800] "GET /BOS/index.jsp HTTP/1.1" 404 - http-bio-8083-exec-1 0
+0:0:0:0:0:0:0:1 - - [21/Sep/2016:16:40:18 +0800] "GET /BOS/index.jsp HTTP/1.1" 200 3837 http-bio-8083-exec-1 453
+0:0:0:0:0:0:0:1 - - [21/Sep/2016:16:40:18 +0800] "GET /BOS/validatecode.jsp HTTP/1.1" 200 1949 http-bio-8083-exec-2 111
