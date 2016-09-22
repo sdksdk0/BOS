@@ -61,13 +61,13 @@
 	var columns = [ [ {
 		field : 'gender',
 		title : '性别',
-		width : 60,
+		width : 100,
 		rowspan : 2,
 		align : 'center'
 	}, {
 		field : 'birthday',
 		title : '生日',
-		width : 120,
+		width : 200,
 		rowspan : 2,
 		align : 'center'
 	}, {
@@ -76,18 +76,31 @@
 	}, {
 		field : 'telephone',
 		title : '电话',
-		width : 800,
+		width : 200,
 		rowspan : 2
 	} ], [ {
 		field : 'station',
 		title : '单位',
-		width : 80,
+		width : 200,
 		align : 'center'
 	}, {
 		field : 'salary',
 		title : '工资',
-		width : 80,
+		width : 200,
 		align : 'right'
+	},{
+		field : 'role',
+		title :'角色',
+		width : 200 ,
+		align : 'left',
+		rowspan : 2,
+		formatter : function(value,rowData,rowIndex){
+			if(value == null){
+				return "";
+			}else{
+				return value.name;
+			}
+		}
 	} ] ];
 	$(function(){
 		// 初始化 datagrid
@@ -98,16 +111,37 @@
 			border : false,
 			rownumbers : true,
 			striped : true,
+			pageList: [2,5,10],
+			pagination : true,
 			toolbar : toolbar,
-			url : "json/users.json",
+			url : "${pageContext.request.contextPath}/user_findByPage",
 			idField : 'id', 
 			frozenColumns : frozenColumns,
 			columns : columns,
 			onClickRow : onClickRow,
-			onDblClickRow : doDblClickRow
+			onDblClickRow : doDblClickRow,
+			onRowContextMenu:function(e,rowIndex,rowData){
+				e.preventDefault();  //阻止默认事件
+				//弹出自定义菜单
+				$('#mm').menu('show',{
+					left:e.pageX,
+					top: e.pageY
+				});
+				// 将右键点击数据行，记录form 中
+				$('#showUserId').val(rowData.id);
+				$('#showUserName').html(rowData.username);
+				
+			}
 		});
 		
 		$("body").css({visibility:"visible"});
+		
+		// 为授予角色 保存按钮添加 点击事件
+		$('#save').click(function(){
+			if($('#grantForm').form('validate')){
+				$('#grantForm').submit();
+			}
+		});
 		
 	});
 	// 双击
@@ -121,27 +155,20 @@
 	}
 	
 	function doAdd() {
-		alert("添加用户");
 		location.href="${pageContext.request.contextPath}/page_admin_userinfo.action";
 	}
 
 	function doView() {
-		alert("编辑用户");
 		var item = $('#grid').datagrid('getSelected');
-		console.info(item);
 		//window.location.href = "edit.html";
 	}
 
 	function doDelete() {
-		alert("删除用户");
 		var ids = [];
 		var items = $('#grid').datagrid('getSelections');
 		for(var i=0; i<items.length; i++){
 		    ids.push(items[i].id);	    
 		}
-			
-		console.info(ids.join(","));
-		
 		$('#grid').datagrid('reload');
 		$('#grid').datagrid('uncheckAll');
 	}
@@ -152,5 +179,40 @@
     <div region="center" border="false">
     	<table id="grid"></table>
 	</div>
+	
+	<!-- 右键菜单 -->
+	<div id="mm" class="easyui-menu" style="width:120px;"> 
+		<div onclick="$('#grantRoleWindow').window('open');">为用户授予角色</div>
+	</div>
+	
+	<div class="easyui-window" title="授予角色" id="grantRoleWindow" closed="true" collapsible="false" minimizable="false" maximizable="false" style="top:100px;left:200px">
+		<div region="north" style="height:31px;overflow:hidden;" split="false" border="false" >
+			<div class="datagrid-toolbar">
+				<a id="save" icon="icon-save"  class="easyui-linkbutton" plain="true" >保存</a>
+			</div>
+		</div>
+	<div region="center" style="overflow:auto;padding:5px;" border="false">
+			<form id="grantForm" action="${pageContext.request.contextPath }/user_grantRole" method="post">
+				<table class="table-edit" width="80%" align="center">
+					<tr class="title">
+						<td colspan="2">功能权限信息
+							<input type="hidden" name="id" id="showUserId"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200">授予用户</td>
+						<td id="showUserName"></td>
+					</tr>
+					<tr>
+						<td>角色列表</td>
+						<td>
+							<input type="text" class="easyui-combobox" name="role.id" data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/role_list',required:true"/>
+						</td>
+					</tr>
+					</table>
+			</form>
+		</div>
+	</div>
+	
 </body>
 </html>

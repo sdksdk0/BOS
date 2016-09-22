@@ -12,6 +12,23 @@
 			<result name="editpassword"  type="json">
 					<param name="root">map</param>
 			</result>
+			<result name="saveOrUpdate">/WEB-INF/pages/admin/userlist.jsp</result>
+			<result name="findByPage"  type="json">
+				<param name="root">pageResponseBean</param>
+				<param name="includeProperties">
+					total,
+					rows\[\d+\]\.id,
+					rows\[\d+\]\.username,
+					rows\[\d+\]\.telephone,
+					rows\[\d+\]\.gender,
+					rows\[\d+\]\.station,
+					rows\[\d+\]\.salary,
+					rows\[\d+\]\.birthday,
+					rows\[\d+\]\.role\.name
+				</param>
+			</result>
+			<result  name="grantRole">/WEB-INF/pages/admin/userlist.jsp</result>
+		
 		</action>
 	</package>	
 		

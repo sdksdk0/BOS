@@ -30,7 +30,12 @@
 	$(function(){
 		$("body").css({visibility:"visible"});
 		$('#save').click(function(){
-			$('#form').submit();
+			// 先校验form
+			if($('#userForm').form('validate')){
+				$('#userForm').submit();
+			}else{
+				$.messager.alert('警告','表单存在非法数据项','warning');
+			}
 		});
 	});
 </script>	
@@ -42,14 +47,14 @@
 		</div>
 	</div>
     <div region="center" style="overflow:auto;padding:5px;" border="false">
-       <form id="form" method="post" >
+       <form id="userForm" action="${pageContext.request.contextPath }/user_saveOrUpdate"  method="post" action="">
            <table class="table-edit"  width="95%" align="center">
            		<tr class="title"><td colspan="4">基本信息</td></tr>
 	           	<tr><td>用户名:</td><td><input type="text" name="username" id="username" class="easyui-validatebox" required="true" /></td>
-					<td>口令:</td><td><input type="password" name="password" id="password" class="easyui-validatebox" required="true" validType="minLength[5]" /></td></tr>
+					<td>密码:</td><td><input type="password" name="password" id="password" class="easyui-validatebox" required="true" validType="minLength[5]" /></td></tr>
 				<tr class="title"><td colspan="4">其他信息</td></tr>
-	           	<tr><td>工资:</td><td><input type="text" name="salary" id="salary" class="easyui-numberbox" /></td>
-					<td>生日:</td><td><input type="text" name="birthday" id="birthday" class="easyui-datebox" /></td></tr>
+	           	<tr><td>工资:</td><td><input type="text" name="salary" id="salary" class="easyui-numberbox"  required="true" /></td>
+					<td>生日:</td><td><input type="text" name="birthday" id="birthday" class="easyui-datebox"   required="true"/></td></tr>
 	           	<tr><td>性别:</td><td>
 	           		<select name="gender" id="gender" class="easyui-combobox" style="width: 150px;">
 	           			<option value="">请选择</option>
@@ -59,7 +64,6 @@
 	           	</td>
 					<td>单位:</td><td>
 					<select name="station" id="station" class="easyui-combobox" style="width: 150px;">
-	           			<option value="">请选择</option>
 	           			<option value="总公司">总公司</option>
 	           			<option value="分公司">分公司</option>
 	           			<option value="厅点">厅点</option>
@@ -73,7 +77,15 @@
 						<input type="text" name="telephone" id="telephone" class="easyui-validatebox" required="true" />
 					</td>
 				</tr>
-	           	<tr><td>备注:</td><td colspan="3"><textarea style="width:80%"></textarea></td></tr>
+				<tr>
+				<td>为用户授予角色</td>
+					<td colspan="3">
+						<input name="role.id" class="easyui-combobox" 
+								data-options="valueField:'id',textField:'name',url:'${pageContext.request.contextPath }/role_list',editable:false" />
+					</td>
+				</tr>
+				
+	           	<tr><td>备注:</td><td colspan="3"><textarea style="width:80%"  ></textarea></td></tr>
            </table>
        </form>
 	</div>

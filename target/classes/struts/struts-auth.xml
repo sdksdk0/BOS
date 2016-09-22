@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.ui.theme" value="simple"></constant>
+
+	<package name="auth" extends="basicstruts2">
+		<action name="function_*"  class="functionAction"  method="{1}">
+			<result name="ajaxlist"  type="json">
+				<param name="root">list</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.info
+				</param>
+			</result>
+			<result name="saveOrUpdate">/WEB-INF/pages/admin/function.jsp</result>
+			<result name="list"  type="json">
+				<param name="root">list</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.name,
+					\[\d+\]\.description,
+					\[\d+\]\.page,
+					\[\d+\]\.generateMenu,
+					\[\d+\]\.zindex
+				</param>
+			</result>
+			<result  name="treedata"  type="json">
+				<param name="root">list</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.name,
+					\[\d+\]\.parentId
+				</param>
+			</result>
+		</action>
+		
+		
+		<action name="role_*"  class="roleAction"  method="{1}">
+			<result name="saveOrUpdate">/WEB-INF/pages/admin/role.jsp</result>
+			<result name="list"  type="json">
+				<param name="root">list</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.name,
+					\[\d+\]\.description
+				</param>
+			</result>
+		</action>
+		
+		
+	
+	</package>
+	
+
+</struts>

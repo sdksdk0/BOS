@@ -6,6 +6,8 @@ import org.hibernate.criterion.DetachedCriteria;
 
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.service.auth.FunctionService;
+import cn.tf.bos.service.auth.RoleService;
 import cn.tf.bos.service.bc.DecidedzoneService;
 import cn.tf.bos.service.bc.RegionService;
 import cn.tf.bos.service.bc.StaffService;
@@ -51,6 +53,16 @@ public abstract class BaseAction  extends ActionSupport  {
 	
 	@Resource(name = "workordermanagerService")
 	protected WorkOrderManageService  workordermanagerService;
+	
+	
+	@Resource(name = "functionService")
+	protected FunctionService  functionService;
+	
+	@Resource(name = "roleService")
+	protected RoleService  roleService;
+	
+	
+	
 	
 	
 	protected  int page;

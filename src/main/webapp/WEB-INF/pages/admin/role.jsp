@@ -47,22 +47,22 @@
 					}
 				}           
 			],
-			url : '',
+			url : '${pageContext.request.contextPath}/role_list',
 			columns : [[
 				{
 					field : 'id',
 					title : '编号',
-					width : 200
+					width : 300
 				},
 				{
 					field : 'name',
 					title : '名称',
-					width : 200
+					width : 300
 				}, 
 				{
 					field : 'description',
 					title : '描述',
-					width : 200
+					width : 300
 				} 
 			]]
 		});

@@ -30,8 +30,14 @@
 	$(function(){
 		// 点击保存
 		$('#save').click(function(){
-			location.href='${pageContext.request.contextPath}/page_admin_function.action';
-		});
+			if($("#functionForm").form('validate')){
+				$('#functionForm').submit();
+			}else{
+				$.messager.alert('警告','数据格式不正确','waring');
+			}
+		
+		
+			});
 	});
 </script>	
 </head>
@@ -42,7 +48,7 @@
 	</div>
 </div>
 <div data-options="region:'center'">
-	<form id="functionForm" method="post">
+	<form id="functionForm"    action="${pageContext.request.contextPath }/function_saveOrUpdate" method="post">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">功能权限信息</td>
@@ -59,7 +65,7 @@
 					</tr>
 					<tr>
 						<td>访问路径</td>
-						<td><input type="text" name="page"  /></td>
+						<td><input type="text" name="page"  class="easyui-validatebox"  data-options="required:true"/></td>
 					</tr>
 					<tr>
 						<td>是否生成菜单</td>
@@ -79,7 +85,7 @@
 					<tr>
 						<td>父功能点</td>
 						<td>
-							<input name="parentFunction.id" class="easyui-combobox" data-options="valueField:'id',textField:'info',url:''"/>
+							<input name="parentFunction.id" class="easyui-combobox" data-options="valueField:'id',textField:'info',url:'${pageContext.request.contextPath }/function_ajaxlist',editable:false"/>
 						</td>
 					</tr>
 					<tr>

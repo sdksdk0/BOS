@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.tf.bos.dao.BaseDao;
+import cn.tf.bos.domain.auth.Function;
+import cn.tf.bos.domain.auth.Role;
 import cn.tf.bos.domain.bc.Decidedzone;
 import cn.tf.bos.domain.bc.Region;
 import cn.tf.bos.domain.bc.Staff;
@@ -53,6 +55,14 @@ public abstract class BaseService {
 	
 	@Resource(name="workordermanageDao")
 	protected BaseDao<WorkOrderManage>  workordermanageDao;
+	
+	
+	@Resource(name="functionDao")
+	protected BaseDao<Function>  functionDao;
+	
+	@Resource(name="roleDao")
+	protected BaseDao<Role>  roleDao;
+	
 	
 	
 	// 分页通用代码

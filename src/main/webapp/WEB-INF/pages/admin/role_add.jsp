@@ -42,7 +42,8 @@
 					title : "t"
 				},
 				simpleData : {
-					enable : true
+					enable : true,
+					pIdKey: "parentId",
 				}
 			},
 			check : {
@@ -51,7 +52,7 @@
 		};
 		
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
+			url : '${pageContext.request.contextPath}/function_treedata.action',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {
@@ -67,7 +68,22 @@
 		
 		// 点击保存
 		$('#save').click(function(){
-			location.href='${pageContext.request.contextPath}/page_admin_privilege.action';
+			if($("#roleForm").form('validate')){
+				// 获得勾选ztree节点 
+				var treeObj = $.fn.zTree.getZTreeObj("functionTree");
+				var nodes = treeObj.getCheckedNodes(true);
+				// 将多个勾选id 转换为字符串，用, 分隔
+				var ids = [];
+				for(var i=0;i<nodes.length; i++){
+					ids.push(nodes[i].id);// 将id 加入数组
+				}
+				// 放入form 隐藏域
+				$('#functionIds').val(ids.join(","));
+				
+				$("#roleForm").submit();
+			}else{
+				$.messager.alert('警告','表单存在非法数据项','warning');
+			}
 		});
 	});
 </script>	
@@ -79,16 +95,10 @@
 			</div>
 		</div>
 		<div region="center" style="overflow:auto;padding:5px;" border="false">
-			<form id="roleForm" method="post">
+			<form id="roleForm" method="post" action="${pageContext.request.contextPath }/role_saveOrUpdate.action">
 				<table class="table-edit" width="80%" align="center">
 					<tr class="title">
 						<td colspan="2">角色信息</td>
-					</tr>
-					<tr>
-						<td width="200">编号</td>
-						<td>
-							<input type="text" name="id" class="easyui-validatebox" data-options="required:true" />						
-						</td>
 					</tr>
 					<tr>
 						<td>名称</td>
@@ -103,6 +113,7 @@
 					<tr>
 						<td>授权</td>
 						<td>
+							<input type="hidden" name="functionIds" id="functionIds" />
 							<ul id="functionTree" class="ztree"></ul>
 						</td>
 					</tr>

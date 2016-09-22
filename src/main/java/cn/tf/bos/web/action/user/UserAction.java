@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
 
+import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
+import cn.tf.bos.page.PageRequestBean;
+import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.web.action.BaseAction;
 
 //用户管理
@@ -41,6 +45,28 @@ public class UserAction  extends  BaseAction  implements ModelDriven<User> {
 			ActionContext.getContext().put("map", map);
 		}
 		return "editpassword";	
+	}
+	
+	
+	public String saveOrUpdate(){
+		userService.saveOrUpdate(user);
+		return "saveOrUpdate";
+	}
+	
+	//查询所有用户信息
+	public String findByPage(){
+		DetachedCriteria detachedCriteria=DetachedCriteria.forClass(User.class);
+		PageRequestBean  pageRequestBean=initPageRequestBean(detachedCriteria);
+		PageResponseBean pageResponseBean=userService.findByPage(pageRequestBean);
+		ActionContext.getContext().put("pageResponseBean", pageResponseBean);
+		
+		return "findByPage";
+	}
+	
+	
+	public String grantRole(){
+		userService.grantRole(user);
+		return "grantRole";
 	}
 
 }

@@ -39,7 +39,7 @@
 					}
 				}           
 			],
-			url : '',
+			url : '${pageContext.request.contextPath}/function_list',
 			columns : [[
 			  {
 				  field : 'id',

@@ -8,7 +8,7 @@
     <class name="cn.tf.bos.domain.user.User" table="user" catalog="bos">
         <id name="id" type="java.lang.String">
             <column name="id" length="32" />
-            <generator class="assigned" />
+            <generator class="uuid" />
         </id>
         <property name="username" type="java.lang.String">
             <column name="username" length="20" />
