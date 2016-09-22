@@ -11,16 +11,22 @@
 		<!-- 注册拦截器 -->
 		<interceptors>
 				<interceptor name="login" class="cn.tf.bos.web.interceptor.LoginInterceptor"></interceptor>
+				<interceptor name="privilege" class="cn.tf.bos.web.interceptor.PrivilegeInterceptor"></interceptor>
+				
 				<interceptor-stack name="loginStack">
 						<interceptor-ref name="defaultStack"></interceptor-ref>
 						<interceptor-ref name="login"></interceptor-ref>
+						<interceptor-ref name="privilege"></interceptor-ref>
 				</interceptor-stack>
+
+				
 		</interceptors>
 		<!-- 设置默认拦截器栈 -->
 		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
 		
 		<global-results>
 			<result name="login">/login.jsp</result>
+			<result name="noprivilege">/noprivilege.jsp</result>
 		</global-results>
 		
 		<action name="index">

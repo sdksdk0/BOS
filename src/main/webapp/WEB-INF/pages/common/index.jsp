@@ -36,7 +36,8 @@
 					title : "t" // 鼠标在停留在菜单上提示
 				},
 				simpleData : { // 简单数据 
-					enable : true
+					enable : true,
+					pIdKey: "parentId",
 				}
 			},
 			callback : {
@@ -46,7 +47,7 @@
 		
 		// 基本功能菜单加载
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/menu.json',
+			url : '${pageContext.request.contextPath}/function_menu',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {
@@ -58,6 +59,20 @@
 			}
 		});
 		
+		var setting2 = {
+				data : {
+					key : {
+						title : "t" // 鼠标在停留在菜单上提示
+					},
+					simpleData : { // 简单数据 
+						enable : true
+					}
+				},
+				callback : {
+					onClick : onClick
+				}
+		};
+		
 		// 系统管理菜单加载
 		$.ajax({
 			url : '${pageContext.request.contextPath}/json/admin.json',
@@ -65,7 +80,7 @@
 			dataType : 'text',
 			success : function(data) {
 				var zNodes = eval("(" + data + ")");
-				$.fn.zTree.init($("#adminMenu"), setting, zNodes);
+				$.fn.zTree.init($("#adminMenu"), setting2, zNodes);
 			},
 			error : function(msg) {
 				alert('菜单加载异常!');

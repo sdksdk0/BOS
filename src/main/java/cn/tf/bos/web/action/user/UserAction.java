@@ -11,6 +11,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.opensymphony.xwork2.inject.Container;
 import com.opensymphony.xwork2.inject.Inject;
 
+import cn.tf.bos.annotation.Privilege;
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
 import cn.tf.bos.page.PageRequestBean;
@@ -47,7 +48,8 @@ public class UserAction  extends  BaseAction  implements ModelDriven<User> {
 		return "editpassword";	
 	}
 	
-	
+	//添加或修改
+	@Privilege("添加或修改")
 	public String saveOrUpdate(){
 		userService.saveOrUpdate(user);
 		return "saveOrUpdate";

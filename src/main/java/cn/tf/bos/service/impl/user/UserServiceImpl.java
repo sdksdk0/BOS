@@ -2,6 +2,8 @@ package cn.tf.bos.service.impl.user;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
+
 import cn.tf.bos.domain.user.User;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
@@ -13,7 +15,13 @@ public class UserServiceImpl extends BaseService implements UserService{
 
 	public User login(User user) {
 		List<User>  list= userDao.findByNameQuery("User.login", user.getUsername(),MD5Utils.md5(user.getPassword()));
-		return list.isEmpty()?null:list.get(0);
+		User loginUser=list.isEmpty()?null:list.get(0);
+		//对用户关联的权限信息初始化
+		if(loginUser.getRole()!=null){
+			Hibernate.initialize(loginUser.getRole().getFunctions());
+		}
+				
+		return loginUser;
 	}
 
 	public void editpwd(User user) {

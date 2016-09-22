@@ -35,6 +35,17 @@
 					\[\d+\]\.parentId
 				</param>
 			</result>
+			<!-- 动态菜单 -->
+			<result name="menu" type="json">
+				<param name="root">functions</param>
+				<param name="includeProperties">
+					\[\d+\]\.id,
+					\[\d+\]\.name,
+					\[\d+\]\.parentId,
+					\[\d+\]\.click,
+					\[\d+\]\.page
+				</param>
+			</result>
 		</action>
 		
 		

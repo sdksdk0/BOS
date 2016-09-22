@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="www.tianfang1314.cn/web/tld"   prefix="tf"%>  
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,12 +53,18 @@
 		$('#delForm').submit();
 	}
 	//工具栏
-	var toolbar = [{
+	var toolbar = [
+	
+	<tf:privilege  value="超级管理员">
+	{
 		id : 'button-add',
 		text : '增加',
 		iconCls : 'icon-add',
 		handler : doAdd
-	}, {
+	}, 
+	</tf:privilege>
+	
+	{
 		id : 'button-delete',
 		text : '删除',
 		iconCls : 'icon-cancel',

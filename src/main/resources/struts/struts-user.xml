@@ -28,7 +28,7 @@
 				</param>
 			</result>
 			<result  name="grantRole">/WEB-INF/pages/admin/userlist.jsp</result>
-		
+			
 		</action>
 	</package>	
 		

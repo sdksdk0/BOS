@@ -22,7 +22,7 @@ public class FunctionServiceImpl extends  BaseService   implements  FunctionServ
 			function.setParentFunction(null);
 		}
 		
-		functionDao.saveOrUpdate(function);
+		functionDao.save(function);
 		
 	}
 
