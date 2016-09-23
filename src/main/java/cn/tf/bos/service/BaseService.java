@@ -18,6 +18,7 @@ import cn.tf.bos.domain.qp.NoticeBill;
 import cn.tf.bos.domain.qp.WorkBill;
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
+import cn.tf.bos.domain.zm.TransferInfo;
 import cn.tf.bos.domain.zm.ZhongZhuanInfo;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
@@ -70,8 +71,12 @@ public abstract class BaseService {
 	protected ProcessEngine processEngine;
 	
 
-	@Resource(name="transferDao")
-	protected BaseDao<ZhongZhuanInfo>  transferDao;
+	@Resource(name="zhongzhuanDao")
+	protected BaseDao<ZhongZhuanInfo>  zhongzhuanDao;
+	
+	@Resource(name="transferInfoDao")
+	protected BaseDao<TransferInfo>  transferInfoDao;
+	
 
 	
 	// 分页通用代码

@@ -21,6 +21,8 @@
 	<bean id="workordermanagerService"  class="cn.tf.bos.service.impl.qp.WorkOrderManageServiceImpl"></bean>
 	<bean id="functionService"  class="cn.tf.bos.service.impl.auth.FunctionServiceImpl"></bean>
 	<bean id="roleService"  class="cn.tf.bos.service.impl.auth.RoleServiceImpl"></bean>
+	<bean id="bosTaskService"  class="cn.tf.bos.service.impl.workflow.BosTaskServiceImpl"></bean>
+	
 	
 	
 	

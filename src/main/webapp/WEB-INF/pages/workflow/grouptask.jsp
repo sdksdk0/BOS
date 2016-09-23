@@ -47,7 +47,7 @@
 						<td>
 							<!-- variables 是map 遍历获得每个entry -->
 							<s:iterator value="variables" var="entry">
-								<s:property value="key"/> ：<s:property value="value"/>
+								<s:property value="key"/> :<s:property value="value"/>
 							</s:iterator>
 						</td>
 						<td> 

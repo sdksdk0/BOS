@@ -72,8 +72,14 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="transferDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+	<bean id="zhongzhuanDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
 		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.zm.ZhongZhuanInfo"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<bean id="transferInfoDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.zm.TransferInfo"></constructor-arg>
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

@@ -13,9 +13,13 @@
 				<result name="viewpng"  type="stream">
 					<param name="contentType">image/png</param>
 				</result>
-				
 		</action>
-		
+		<action name="task_*"  class="taskAction"  method="{1}">
+			<result name="findgrouptask">/WEB-INF/pages/workflow/grouptask.jsp</result>
+			<result name="takeTask"  type="redirectAction">task_findgrouptask</result>
+			<result name="findpersonaltask">/WEB-INF/pages/workflow/personaltask.jsp</result>
+			<result name="saveTransferinfo" type="redirectAction">task_findpersonaltask</result>
+		</action>
 		
 		
 		

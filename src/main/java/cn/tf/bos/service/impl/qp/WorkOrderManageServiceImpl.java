@@ -50,18 +50,18 @@ public class WorkOrderManageServiceImpl  extends BaseService  implements  WorkOr
 		ExecutionService executionService=processEngine.getExecutionService();
 		//在启动流程时关联流程实例全局的中转信息对象
 		
-		ZhongZhuanInfo transferInfo=new ZhongZhuanInfo();
+		ZhongZhuanInfo zhongzhuanInfo=new ZhongZhuanInfo();
 		//未到达
-		transferInfo.setArrive("0");
+		zhongzhuanInfo.setArrive("0");
 		//关联工单信息
-		transferInfo.setWorkOrderManage(exist);  
+		zhongzhuanInfo.setWorkOrderManage(exist);  
 		//持久化
-		transferDao.save(transferInfo);
+		zhongzhuanDao.save(zhongzhuanInfo);
 		
 		Map<String,Object>  variables=new HashMap<String,Object>();
-		variables.put("transferInfo", transferInfo);
+		variables.put("zhongzhuanInfo", zhongzhuanInfo);
 		
-		executionService.startProcessInstanceByKey("transfer");
+		executionService.startProcessInstanceByKey("transfer",variables);
 		
 	}
 		

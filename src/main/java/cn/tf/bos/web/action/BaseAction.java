@@ -17,6 +17,7 @@ import cn.tf.bos.service.bc.SubareaService;
 import cn.tf.bos.service.qp.NoticeBillService;
 import cn.tf.bos.service.qp.WorkOrderManageService;
 import cn.tf.bos.service.user.UserService;
+import cn.tf.bos.service.workflow.BosTaskSerice;
 import cn.tf.boscrm.service.CustomerService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -65,7 +66,8 @@ public abstract class BaseAction  extends ActionSupport  {
 	@Resource(name = "processEngine")
 	protected ProcessEngine processEngine;
 	
-	
+	@Resource(name = "bosTaskService")
+	protected BosTaskSerice  bosTaskService;
 	
 	
 	protected  int page;

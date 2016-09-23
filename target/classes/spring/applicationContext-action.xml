@@ -23,6 +23,7 @@
 	<bean id="functionAction"  class="cn.tf.bos.web.action.auth.FunctionAction"   scope="prototype"></bean>
 	<bean id="roleAction"  class="cn.tf.bos.web.action.auth.RoleAction"   scope="prototype"></bean>
 	<bean id="ProcessDefinitionAction"  class="cn.tf.bos.web.action.workflow.ProcessDefinitionAction"   scope="prototype"></bean>
+	<bean id="taskAction"  class="cn.tf.bos.web.action.workflow.TaskAction"   scope="prototype"></bean>
 	
 	
 	

@@ -30,7 +30,7 @@
 </head>
 <body class="easyui-layout">
 	<div region="center" style="overflow:auto;padding:5px;" border="false">
-      	<form id="transferForm" method="post" action="${pageContext.request.contextPath }/task_saveTransferinfo.action">
+      	<form id="transferForm" method="post" action="${pageContext.request.contextPath }/task_saveTransferinfo">
            <table class="table-edit"  width="95%" align="center">
            		<tr class="title"><td colspan="2">中转信息办理</td></tr>
 	           	<tr>
