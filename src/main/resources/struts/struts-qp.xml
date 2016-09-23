@@ -34,8 +34,9 @@
 				rows\[\d+\]\.floadreqr
 			
 			</param>
-			
 		</result>
+		<result  name="list">/WEB-INF/pages/zhongzhuan/check.jsp</result>
+		<result name="check"  type="redirectAction">workordermanage_list</result>
 	</action>
 	</package>
 

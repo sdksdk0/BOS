@@ -3,6 +3,7 @@ package cn.tf.bos.web.action;
 import javax.annotation.Resource;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.jbpm.api.ProcessEngine;
 
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.page.PageRequestBean;
@@ -61,6 +62,8 @@ public abstract class BaseAction  extends ActionSupport  {
 	@Resource(name = "roleService")
 	protected RoleService  roleService;
 	
+	@Resource(name = "processEngine")
+	protected ProcessEngine processEngine;
 	
 	
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags"  prefix="s" %>   
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,27 +56,32 @@
   			<tr>
   				<th data-options="field:'id'" width="120">流程编号</th>
   				<th data-options="field:'name'" width="200">流程名称</th>
+  				<th data-options="field:'key'" width="200">流程关键字</th>
   				<th data-options="field:'version'" width="80">版本号</th>
   				<th data-options="field:'viewpng'" width="200">查看流程图</th>
   			</tr>
   		</thead>
   		<tbody>
+  		
+  			<s:iterator  value="#processDefinition"  var="pd">
   				<tr>
-  					<td>1 </td>
-  					<td>中转配送流程</td>
-  					<td>1</td>
+  					<td><s:property  value="id"/> </td>
+  					<td><s:property  value="name"/></td>
+  					<td><s:property  value="key"/></td>
+  					<td><s:property  value="version"/></td>
   					<td>
-  						<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查看流程图</a>
+  						<s:if  test="imageResourceName!=null">
+  							<s:a  action="processdefinition_viewpng"  namespace="/"  cssClass="easyui-linkbutton"  data-options="iconCls:'icon-search'">查看流程图
+	  							<s:param  name="deploymentId"  value="deploymentId"></s:param>
+	  							<s:param  name="imageResourceName"  value="imageResourceName"></s:param>
+  							</s:a>
+  						
+  						</s:if>
+  						
   					</td>
   				</tr>
-  				<tr>
-  					<td>2</td>
-  					<td>请假审批流程</td>
-  					<td>2</td>
-  					<td>
-  						<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查看流程图</a>
-  					</td>
-  				</tr>
+  				
+  				</s:iterator>
   		</tbody>
   	</table>
   </div>

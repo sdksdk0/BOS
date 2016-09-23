@@ -65,4 +65,10 @@
             <column name="updatetime" length="10" />
         </property>
     </class>
+    
+    <query name="WorkOrderManage.listUnCheck">
+    	<![CDATA[from WorkOrderManage  where managerCheck='0']]>
+    </query>
+    
+    
 </hibernate-mapping>

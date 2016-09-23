@@ -42,5 +42,7 @@
 	<include file="struts/struts-bc.xml"></include>	
 	<include file="struts/struts-qp.xml"></include>	
 	<include file="struts/struts-auth.xml"></include>	
+	<include file="struts/struts-workflow.xml"></include>	
+
 
 </struts>

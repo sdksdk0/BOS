@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.tf.bos.domain.zm.ZhongZhuanInfo" table="zm_zhongzhuaninfo">
+		<id name="id">
+			<generator class="identity"></generator>
+		</id>
+		<property name="arrive"></property>
+		<many-to-one name="inStore" class="cn.tf.bos.domain.zm.InStore" column="instore_id"></many-to-one>
+		<many-to-one name="outStore" class="cn.tf.bos.domain.zm.OutStore" column="outstore_id"></many-to-one>
+		<many-to-one name="receiveGoodsInfo" class="cn.tf.bos.domain.zm.ReceiveGoodsInfo" column="receivegoodsinfo_id"></many-to-one>
+		<many-to-one name="workOrderManage" class="cn.tf.bos.domain.qp.WorkOrderManage" column="workOrderManage_id"></many-to-one>
+	
+		<list name="transferInfos">
+			<key column="zhongzhuaninfo_id"></key>
+			<index column="[index]" type="string"></index>  
+			<one-to-many class="cn.tf.bos.domain.zm.TransferInfo"/>
+		</list>
+	</class>
+</hibernate-mapping>    

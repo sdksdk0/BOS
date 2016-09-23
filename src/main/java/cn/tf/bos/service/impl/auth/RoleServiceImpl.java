@@ -2,6 +2,8 @@ package cn.tf.bos.service.impl.auth;
 
 import java.util.List;
 
+import org.jbpm.api.IdentityService;
+
 import cn.tf.bos.domain.auth.Function;
 import cn.tf.bos.domain.auth.Role;
 import cn.tf.bos.service.BaseService;
@@ -22,6 +24,12 @@ public class RoleServiceImpl extends BaseService  implements  RoleService{
 				role.getFunctions().add(function);
 			}
 		}
+		
+		//建立jbpm系统组信息
+		IdentityService  identityService=processEngine.getIdentityService();
+		identityService.createGroup(role.getName());
+		
+		
 	}
 
 	@Override

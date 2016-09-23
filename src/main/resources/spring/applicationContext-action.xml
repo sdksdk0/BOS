@@ -22,5 +22,8 @@
 	<bean id="workordermanageAction"  class="cn.tf.bos.web.action.qp.WorkOrderManageAction"   scope="prototype"></bean>
 	<bean id="functionAction"  class="cn.tf.bos.web.action.auth.FunctionAction"   scope="prototype"></bean>
 	<bean id="roleAction"  class="cn.tf.bos.web.action.auth.RoleAction"   scope="prototype"></bean>
+	<bean id="ProcessDefinitionAction"  class="cn.tf.bos.web.action.workflow.ProcessDefinitionAction"   scope="prototype"></bean>
+	
+	
 	
 </beans>

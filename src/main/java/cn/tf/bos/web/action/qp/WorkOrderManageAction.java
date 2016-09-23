@@ -1,6 +1,7 @@
 package cn.tf.bos.web.action.qp;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.hibernate.criterion.DetachedCriteria;
@@ -72,8 +73,19 @@ private WorkOrderManage workOrderManage=new  WorkOrderManage();
 		this.conditionValue = conditionValue;
 	}
 	
+	//查询所有未审核的工作单
+	public String list(){
+		List<WorkOrderManage>  workOrderManages=workordermanagerService.listUnCheck();
+		ActionContext.getContext().put("workOrderManages", workOrderManages);
+		return "list";
+	}
 	
-	
+	//通过审核
+	public String check(){
+		workordermanagerService.check(workOrderManage);
+		
+		return "check";
+	}
 	
 
 }

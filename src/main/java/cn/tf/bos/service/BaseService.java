@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.jbpm.api.ProcessEngine;
+
 import cn.tf.bos.dao.BaseDao;
 import cn.tf.bos.domain.auth.Function;
 import cn.tf.bos.domain.auth.Role;
@@ -16,6 +18,7 @@ import cn.tf.bos.domain.qp.NoticeBill;
 import cn.tf.bos.domain.qp.WorkBill;
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
+import cn.tf.bos.domain.zm.ZhongZhuanInfo;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
 import cn.tf.boscrm.service.CustomerService;
@@ -63,7 +66,13 @@ public abstract class BaseService {
 	@Resource(name="roleDao")
 	protected BaseDao<Role>  roleDao;
 	
+	@Resource(name = "processEngine")
+	protected ProcessEngine processEngine;
 	
+
+	@Resource(name="transferDao")
+	protected BaseDao<ZhongZhuanInfo>  transferDao;
+
 	
 	// 分页通用代码
 	public <T> PageResponseBean pageQuery(PageRequestBean pageRequestBean, BaseDao<T> dao) {

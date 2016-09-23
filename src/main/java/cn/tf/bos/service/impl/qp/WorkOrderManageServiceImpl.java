@@ -1,6 +1,13 @@
 package cn.tf.bos.service.impl.qp;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.jbpm.api.ExecutionService;
+
 import cn.tf.bos.domain.qp.WorkOrderManage;
+import cn.tf.bos.domain.zm.ZhongZhuanInfo;
 import cn.tf.bos.page.PageRequestBean;
 import cn.tf.bos.page.PageResponseBean;
 import cn.tf.bos.service.BaseService;
@@ -25,6 +32,37 @@ public class WorkOrderManageServiceImpl  extends BaseService  implements  WorkOr
 			String conditionValue, int page, int rows) {
 		
 		return workordermanageDao.findByLucene(conditionName,conditionValue,page,rows);
+	}
+
+	@Override
+	public List<WorkOrderManage> listUnCheck() {
+		
+		return workordermanageDao.findByNameQuery("WorkOrderManage.listUnCheck");
+	}
+
+	@Override
+	public void check(WorkOrderManage workOrderManage) {
+		//将字段从0改为1
+		WorkOrderManage  exist=workordermanageDao.findById(workOrderManage.getId());
+		exist.setManagerCheck("1");
+		
+		//启动流程
+		ExecutionService executionService=processEngine.getExecutionService();
+		//在启动流程时关联流程实例全局的中转信息对象
+		
+		ZhongZhuanInfo transferInfo=new ZhongZhuanInfo();
+		//未到达
+		transferInfo.setArrive("0");
+		//关联工单信息
+		transferInfo.setWorkOrderManage(exist);  
+		//持久化
+		transferDao.save(transferInfo);
+		
+		Map<String,Object>  variables=new HashMap<String,Object>();
+		variables.put("transferInfo", transferInfo);
+		
+		executionService.startProcessInstanceByKey("transfer");
+		
 	}
 		
 }

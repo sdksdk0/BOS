@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process key="transfer" name="中转配送流程" xmlns="http://jbpm.org/4.4/jpdl">
+   <start g="219,10,48,48" name="start1">
+      <transition g="-71,-17" name="to 中转环节" to="中转环节"/>
+   </start>
+   <end g="222,544,48,48" name="end1"/>
+   <task candidate-groups="业务员" form="page_zhongzhuan_transferinfo.action" g="196,99,92,52" name="中转环节">
+      <transition g="-47,-17" name="to 入库" to="入库"/>
+   </task>
+   <task candidate-groups="仓库管理员" form="page_zhongzhuan_instore_complete.action" g="193,208,92,52" name="入库">
+      <transition g="-47,-17" name="to 出库" to="出库"/>
+   </task>
+   <task candidate-groups="仓库管理员" form="page_zhongzhuan_outstore_complete.action" g="194,307,92,52" name="出库">
+      <transition g="-71,-17" name="to 配送签收" to="配送签收"/>
+   </task>
+   <task candidate-groups="取派员" form="page_zhongzhuan_receiveinfo_complete.action" g="197,428,92,52" name="配送签收">
+      <transition g="-47,-17" name="to end1" to="end1"/>
+   </task>
+</process>

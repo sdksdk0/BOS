@@ -40,7 +40,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">发布新流程</a>  
+				<a id="btn" href="javascript:$('#uploadForm').submit();" class="easyui-linkbutton" data-options="iconCls:'icon-save'">发布新流程</a>  
 			</td>
 		</tr>
 	</table>
