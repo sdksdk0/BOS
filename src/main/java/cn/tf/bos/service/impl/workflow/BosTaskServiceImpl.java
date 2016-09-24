@@ -9,6 +9,9 @@ import org.jbpm.pvm.internal.model.ExecutionImpl;
 import org.jbpm.pvm.internal.model.ProcessDefinitionImpl;
 import org.jbpm.pvm.internal.model.TransitionImpl;
 
+import cn.tf.bos.domain.zm.InStore;
+import cn.tf.bos.domain.zm.OutStore;
+import cn.tf.bos.domain.zm.ReceiveGoodsInfo;
 import cn.tf.bos.domain.zm.TransferInfo;
 import cn.tf.bos.domain.zm.ZhongZhuanInfo;
 import cn.tf.bos.service.BaseService;
@@ -74,6 +77,44 @@ public class BosTaskServiceImpl extends BaseService implements BosTaskSerice{
 		} finally {
 			envImpl.close();
 		}
+	}
+
+
+	@Override
+	public void complieteInStoreTask(InStore inStore, String taskId) {
+		//业务数据持久化
+		inStoreDao.save(inStore);
+		TaskService taskService=processEngine.getTaskService();
+		ZhongZhuanInfo  zhongzhuanInfo=(ZhongZhuanInfo) taskService.getVariable(taskId, "zhongzhuanInfo");
+		zhongzhuanInfo.setInStore(inStore);
+		
+		taskService.completeTask(taskId,"to 出库");
+	}
+
+
+	@Override
+	public void complieteOutStore(OutStore outStore, String taskId) {
+		outStoreDao.save(outStore);
+		TaskService taskService=processEngine.getTaskService();
+		ZhongZhuanInfo  zhongzhuanInfo=(ZhongZhuanInfo) taskService.getVariable(taskId, "zhongzhuanInfo");
+		zhongzhuanInfo.setOutStore(outStore);
+		
+		taskService.completeTask(taskId,"to 配送签收");
+	
+
+	}
+
+
+	@Override
+	public void complieteReceGoodsInfoTask(ReceiveGoodsInfo receiveGoodsInfo,
+			String taskId) {
+		receiveGoodsInfoDao.save(receiveGoodsInfo);
+		TaskService taskService=processEngine.getTaskService();
+		ZhongZhuanInfo  zhongzhuanInfo=(ZhongZhuanInfo) taskService.getVariable(taskId, "zhongzhuanInfo");
+		zhongzhuanInfo.setReceiveGoodsInfo(receiveGoodsInfo);
+		
+		taskService.completeTask(taskId,"to end1");
+	
 	}
 
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="/struts-tags" prefix="s" %>   
+    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,43 +38,44 @@
 		});
 	});
 	
+	function show(obj){
+		//弹出窗口
+		window.showModalDialog("${pageContext.request.contextPath}/processinstance_showpng?processInstanceId="+obj);
+		
+	}
+	
+	
+	
 </script>	
 </head>
 <body class="easyui-layout">
    <div region="center">
-   	  <table id="grid" class="easyui-datagrid">
+   	  <table id="grid" class="easyui-datagrid"  data-options="nowrap:false">
    	  	<thead>
   			<tr>
   				<th data-options="field:'id'" width="120">实例编号</th>
   				<th data-options="field:'name'" width="200">流程定义编号</th>
   				<th data-options="field:'activity'" width="120">运行到哪个任务</th>
-  				<th data-options="field:'viewpng'" width="200">查看流程图</th>
-  				<th data-options="field:'viewRuntime'" width="200">查看实例运行信息</th>
+  				<th data-options="field:'viewpng'" width="200">查看实例运行信息</th>
+  				<th data-options="field:'viewRuntime'" width="200">查看流程图</th>
   			</tr>
   		</thead>
   		<tbody>
+  			<s:iterator  value="#processInstances"  var="processInstance">
   				<tr>
-  					<td>1</td>
-  					<td>1 </td>
-  					<td>中转</td>
+  					<td><s:property  value="id" /></td>
+  					<td><s:property  value="processDefinitionId" /></td>
+  					<td><s:property  value="#processInstance.findActiveActivityNames()" /></td>
   					<td>
-  						<a href="#')">查看流程图</a>
+  						<s:iterator value="variables" var="entry">
+								<s:property value="key"/>=<s:property value="value"/><br/>
+							</s:iterator>
   					</td>
   					<td>
-  						<a href="#">查看实例运行信息</a>
+  						<a href="#" class="easyui-linkbutton" onclick="show('${id}');">查看流程图</a>
   					</td>
   				</tr>
-  				<tr>
-  					<td>2</td>
-  					<td>1 </td>
-  					<td>入库</td>
-  					<td>
-  						<a href="#')">查看流程图</a>
-  					</td>
-  					<td>
-  						<a href="#">查看实例运行信息</a>
-  					</td>
-  				</tr>
+  			</s:iterator>
   		</tbody>
    	  </table>
    </div>

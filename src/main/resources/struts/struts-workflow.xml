@@ -19,8 +19,13 @@
 			<result name="takeTask"  type="redirectAction">task_findgrouptask</result>
 			<result name="findpersonaltask">/WEB-INF/pages/workflow/personaltask.jsp</result>
 			<result name="saveTransferinfo" type="redirectAction">task_findpersonaltask</result>
+			<result name="completeSuccess" type="redirectAction">task_findpersonaltask</result>
 		</action>
 		
+		<action name="processinstance_*"  class="processInstanceAction"  method="{1}">
+			<result name="list">/WEB-INF/pages/workflow/processinstance.jsp</result>
+			<result name="showpng">/WEB-INF/pages/workflow/viewpng.jsp</result>
+		</action>
 		
 		
 	

@@ -83,4 +83,21 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	
+	<bean id="inStoreDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.zm.InStore"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	
+	<bean id="outStoreDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.zm.OutStore"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="receiveGoodsInfoDao" class="cn.tf.bos.dao.impl.BaseDaoImpl">
+		<constructor-arg index="0" type="java.lang.String"  value="cn.tf.bos.domain.zm.ReceiveGoodsInfo"></constructor-arg>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 </beans>

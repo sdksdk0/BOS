@@ -18,6 +18,9 @@ import cn.tf.bos.domain.qp.NoticeBill;
 import cn.tf.bos.domain.qp.WorkBill;
 import cn.tf.bos.domain.qp.WorkOrderManage;
 import cn.tf.bos.domain.user.User;
+import cn.tf.bos.domain.zm.InStore;
+import cn.tf.bos.domain.zm.OutStore;
+import cn.tf.bos.domain.zm.ReceiveGoodsInfo;
 import cn.tf.bos.domain.zm.TransferInfo;
 import cn.tf.bos.domain.zm.ZhongZhuanInfo;
 import cn.tf.bos.page.PageRequestBean;
@@ -77,7 +80,16 @@ public abstract class BaseService {
 	@Resource(name="transferInfoDao")
 	protected BaseDao<TransferInfo>  transferInfoDao;
 	
-
+	
+	@Resource(name="inStoreDao")
+	protected BaseDao<InStore>  inStoreDao;
+	
+	@Resource(name="outStoreDao")
+	protected BaseDao<OutStore>  outStoreDao;
+	
+	
+	@Resource(name="receiveGoodsInfoDao")
+	protected BaseDao<ReceiveGoodsInfo>  receiveGoodsInfoDao;
 	
 	// 分页通用代码
 	public <T> PageResponseBean pageQuery(PageRequestBean pageRequestBean, BaseDao<T> dao) {
