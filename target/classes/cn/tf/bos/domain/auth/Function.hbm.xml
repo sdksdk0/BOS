@@ -3,6 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="cn.tf.bos.domain.auth.Function" table="auth_function">
+		<cache usage="read-write"/>
 		<id name="id">
 			<generator class="uuid"></generator>
 		</id>
@@ -15,7 +16,7 @@
 		
 		<!-- 表关联 -->
 		<many-to-one name="parentFunction" class="cn.tf.bos.domain.auth.Function" column="pid"></many-to-one>
-		<set name="childrenFunctions">
+			<set name="childrenFunctions">
 			<key column="pid"></key>
 			<one-to-many class="cn.tf.bos.domain.auth.Function"/>
 		</set>
