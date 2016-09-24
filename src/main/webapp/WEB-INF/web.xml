@@ -39,6 +39,14 @@
   	<dispatcher>REQUEST</dispatcher>
   	<dispatcher>FORWARD</dispatcher>
   </filter-mapping>
+  
+  <error-page>
+  		<error-code>404</error-code>
+  		<location>/404.jsp</location>
+  </error-page>
+  
+  
+  
   <!-- 欢迎页面 -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
